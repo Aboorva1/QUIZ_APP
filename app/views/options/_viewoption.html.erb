@@ -1,0 +1,36 @@
+
+
+<table class="table table-striped table-bordered table-condensed">
+<thead>
+<tr>
+  <th colspan="1">Option</th>
+  <th colspan="1">Correct key</th>
+  <th colspan="1">Actions</th>
+</tr>
+</thead>
+<tbody>
+    <% question_options.all.each do |option| %>
+      <tr>
+        <td><%= option.option1 %></td>
+        <td><%= option.correct_key %></td>         
+        <td>
+          
+          <%= link_to(edit_quiz_question_option_path(@quiz, @question, option), class: "btn btn-small") do %>
+            Edit <i class="icon-edit icon-white"></i>
+          <% end %>
+
+       
+          <%= link_to(quiz_question_option_path(@quiz, @question, option), class: "btn btn-small btn-danger", confirm: "Are you sure?" , method: :delete, :title => t('EHM-G.destroy')) do %>
+            Destroy <i class="icon-trash icon-white"></i>
+          <% end %>
+          
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+<p>
+<%= link_to 'Back', quizzes_path %>
+</p>
