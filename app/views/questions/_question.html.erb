@@ -4,25 +4,16 @@
       <strong>Question:</strong>
   
          <%= link_to question.body, quiz_question_path(@quiz, question) %>
-  
-    </p>
-
-    <p>
-      <%= link_to '<button>Destroy Question</button>'.html_safe, [@question.quiz, question],
+    <%= link_to "Edit", edit_quiz_question_path(@quiz, question), class: "btn btn-xs btn-primary" %>
+    <%= link_to 'Destroy', [@question.quiz, question],
               method: :delete,
-              data: { confirm: "Are you sure?" } %>
-    </p>
-  <%= link_to "<button>Edit Quiz Question</button>".html_safe, edit_quiz_question_path(@quiz, question) %>
-
-  <%= link_to 'Back to quiz', quizzes_path %>
-  <% end %>
-
-
-  
+              data: { confirm: "Are you sure?" }, class: "btn btn-xs btn-danger" %>
+              </p>
+  <% end %>    
 <% end %>     
 
 
-<%# add else %>
+
 
 
 
