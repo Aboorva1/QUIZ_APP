@@ -6,7 +6,8 @@
   <p>
     <%= form.label :body %><br>
     <%= form.text_field :body %>
+    <%= form.submit %>
   </p>
-  <%= form.submit %>
 <% end %>  
   
+<%= link_to 'Back', quizzes_path, class: "btn btn-xs btn-success" %>

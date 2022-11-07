@@ -3,12 +3,12 @@
 
 <% if current_user.isadmin? %>
 
-<% if @quiz.questions.count != 0 %>
-  <%= render @quiz.questions %> 
-<% end %>
+  <% if @quiz.questions.count != 0 %>
+    <%= render @quiz.questions %> 
+  <% end %>
 
-<h2>Add question</h2>
-<%= render 'questions/form' %>
+  <h2>Add question</h2>
+  <%= render 'questions/form' %>
 
 <ul>
   <li><%= link_to "Edit quiz title", edit_quiz_path(@quiz) %></li>
@@ -16,11 +16,10 @@
                   method: :delete,
                   data: { confirm: "Are you sure?" } %></li>
 </ul>
-<% else %>
 
+<% else %>
     <% if @quiz.questions.count != 0 %>
-        <%= render partial: "answer/createanswer", :locals => {quiz_questions: @quiz.questions} %>
-        
+        <%= render partial: "answer/createanswer", :locals => {quiz_questions: @quiz.questions} %>    
     <% else %>
         <%= 'Questions yet to be added' %>
     <% end %>
