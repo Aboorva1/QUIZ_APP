@@ -3,11 +3,12 @@ class QuizzesController < ApplicationController
   # skip_before_action :verify_authenticity_token, :only => :check_answer
   before_action :authenticate_user!
   before_action :set_quiz, only: [:show, :edit, :update, :destroy]
+
   def index
     @quizzes = Quiz.all
   end
+
   def show
-    @quiz = Quiz.find(params[:id])
     @question = @quiz.questions.build
   end
 
@@ -28,11 +29,10 @@ class QuizzesController < ApplicationController
   end
 
   def edit
-    @quiz = Quiz.find(params[:id])
+    
   end
 
   def update
-    @quiz = Quiz.find(params[:id])
     if @quiz.update_attributes(quiz_params)
       redirect_to @quiz
     else
@@ -41,9 +41,7 @@ class QuizzesController < ApplicationController
   end
 
   def destroy
-    @quiz = Quiz.find(params[:id])
     @quiz.destroy
-
     redirect_to root_path
   end
 

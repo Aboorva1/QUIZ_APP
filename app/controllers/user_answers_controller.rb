@@ -11,7 +11,7 @@ class UserAnswersController < ApplicationController
 
   def create
     
-    @quiz = Quiz.find(params[:quiz_id]
+    @quiz = Quiz.find(params[:quiz_id])
     @question = Question.find(params[:question_id])
     @option = Option.find(params[:option_id])
     @user_answer = @option.user_answers.create(user_answer_params)

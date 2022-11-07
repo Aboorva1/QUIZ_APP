@@ -11,10 +11,8 @@ class AnswerController < ApplicationController
       @user_answer.question_id = key
       @user_answer.user_key = Option.find_by(option1: value).correct_key
       @user_answer.option_id = Option.find_by(option1: value).id
-      if @user_answer.user_key == 'f'
+      if @user_answer.user_key == 't'
         $score += 1
-        puts '==============='
-        puts 'kjlop'
       end
       @user_answer.save
       

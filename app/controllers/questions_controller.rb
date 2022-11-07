@@ -1,5 +1,12 @@
 class QuestionsController < ApplicationController
-    def show
+
+  before_action :set_question, only: [:show, :edit, :update, :destroy]
+
+      def index
+        @questions = Question.all
+      end
+
+      def show
         @quiz = Quiz.find(params[:quiz_id])
         @question = Question.find(params[:id])
       end
@@ -14,8 +21,6 @@ class QuestionsController < ApplicationController
       end
     
      def update
-        @quiz = Quiz.find(params[:quiz_id])
-        @question = Question.find(params[:id])
         if (@question.update(question_params))
            redirect_to @quiz
         else
@@ -31,12 +36,18 @@ class QuestionsController < ApplicationController
       end
 
       def destroy
-        @quiz = Quiz.find(params[:quiz_id])
-        @question = @quiz.questions.find(params[:id])
         @question.destroy
         redirect_to quiz_path(@quiz)
       end
+
+      
       private
+
+      def set_question
+        @quiz = Quiz.find(params[:quiz_id])
+        @question = Question.find(params[:id])
+      end
+
     def question_params
       params.require(:question).permit(:body)
     end
