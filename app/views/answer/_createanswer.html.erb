@@ -1,21 +1,25 @@
-
-
-<%= form_with url: answer_create_answers_path, method: :post do |form| %>
-<%= form.hidden_field :quiz_id, value: quiz_questions.first.quiz_id%>
-<ul>
-<% quiz_questions.each do |question| %>
-
-  <li><%= question.body %></li>
-  <% question.options.each_with_index do |option| %>
-  <ul>
-  <%= form.radio_button("answers[#{question.id}]", option.option1) %>
-  <%= label_tag "#{option.option1}", option.option1 %>
-  </ul>
-  <% end %>
-<% end %>
-</ul>
-<%= form.submit "Submit" %>
-
-<% end %>
-
-
+<div class = "quiz">
+  <div class="container mt-sm-5 my-1">
+    <div class="question ml-sm-5 pl-sm-5 pt-2">
+      <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3">
+        <%= form_with url: answer_create_answers_path, method: :post do |form| %>
+        <%= form.hidden_field :quiz_id, value: quiz_questions.first.quiz_id%>
+        <ol>
+        <% quiz_questions.each do |question| %>
+          <b><li><%= question.body %></li></b>
+          <% question.options.each_with_index do |option| %>
+            <ul>
+            <%= form.radio_button("answers[#{question.id}]", option.option1) %>
+            <%= label_tag "#{option.option1}", option.option1, class: "options" %>
+            </ul>
+          <% end %>
+        <% end %>
+        </ol>
+        <div class="col-md-12 text-center">
+          <%= form.submit "Submit", class: "btn btn-xs purple-gradient" %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
