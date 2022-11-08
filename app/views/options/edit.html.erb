@@ -1,15 +1,3 @@
 <h1>Edit Option</h1>
 
-<%= form_with(model: [@quiz, @question, @option], local: true) do |form| %>
-  
-  <%= form.hidden_field :question_id, value: @question.id %>
-  
-  <p>
-    <%= form.label :option %><br>
-    <%= form.text_field :option1 %>
-    <%= form.label :correct_key %>
-    <%= form.radio_button :correct_key, checked: true %>
-  </p>
-  <%= form.submit "Save Options" %>
-  
-<% end %>
+<%= render "form"%>
