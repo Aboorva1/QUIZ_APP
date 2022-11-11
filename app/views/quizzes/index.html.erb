@@ -1,13 +1,11 @@
 
 <div class = 'index'>
 <%= image_tag "quizlogo.jpg", height: 300 , width:500%>
-
-<h1 style="color:red">Quizzes</h1>
 <ul>
   <% @quizzes.each do |quiz| %>
-    <li>
-      <%= link_to quiz.title, quiz %>
-    </li>
+
+    <p><%= link_to quiz.title, quiz %></p>
+
   <% end %>
 </ul>
 

@@ -6,12 +6,14 @@
         <%= form.hidden_field :quiz_id, value: quiz_questions.first.quiz_id%>
         <ol>
         <% quiz_questions.each do |question| %>
+        <% if question.body.present? %>
           <b><li><%= question.body %></li></b>
-          <% question.options.each_with_index do |option| %>
+          <% question.options.each do |option| %>
             <ul>
             <%= form.radio_button("answers[#{question.id}]", option.option1) %>
-            <%= label_tag "#{option.option1}", option.option1, class: "options" %>
+            <%= label_tag "#{option.option1}", option.option1 %>
             </ul>
+          <% end %>
           <% end %>
         <% end %>
         </ol>
@@ -23,3 +25,4 @@
     </div>
   </div>
 </div>
+
