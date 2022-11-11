@@ -9,7 +9,9 @@ class QuizzesController < ApplicationController
   end
 
   def show
+    @options = []
     @question = @quiz.questions.build
+    4.times {@options << @question.options.build}
   end
 
   def new

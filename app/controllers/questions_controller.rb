@@ -12,8 +12,9 @@ class QuestionsController < ApplicationController
       end
     
       def new
-        @question = Question.new
+        @question = Question.new 
       end
+
     
       def edit
         @quiz = Quiz.find(params[:quiz_id])
@@ -21,25 +22,35 @@ class QuestionsController < ApplicationController
       end
     
      def update
+      correct_index = params[:question][:options_attributes][:correct_key]
         if (@question.update(question_params))
-           redirect_to @quiz
+          update_correct_answer = @question.options[correct_index.to_i]
+          update_correct_answer.update(:correct_key => true)
+          redirect_to @quiz
         else
           render :edit
          end
       end
 
     
-      def create
+      def create      
         @quiz = Quiz.find(params[:quiz_id])
-        @question = @quiz.questions.create(question_params)
-        redirect_to quiz_path(@quiz)
+        @question = Question.new(question_params)
+        correct_index = params[:question][:options_attributes][:correct_key]
+        if @question.save
+          @question.options.build
+          update_correct_answer = @question.options[correct_index.to_i]
+          update_correct_answer.update(:correct_key => true)
+          redirect_to @quiz
+        else  
+          redirect_to @quiz
+        end 
       end
 
       def destroy
         @question.destroy
         redirect_to quiz_path(@quiz)
       end
-
       
       private
 
@@ -49,7 +60,7 @@ class QuestionsController < ApplicationController
       end
 
     def question_params
-      params.require(:question).permit(:body)
+      params.require(:question).permit(:body, :quiz_id, options_attributes: [:id, :option1, :correct_key])
     end
 end
 

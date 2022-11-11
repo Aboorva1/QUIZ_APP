@@ -29,8 +29,7 @@ class OptionsController < ApplicationController
     
   end
 
-  def update
-    
+  def update  
     if (@option.update(option_params))
       redirect_to quiz_question_path(@quiz, @question)
    else
@@ -58,7 +57,7 @@ class OptionsController < ApplicationController
   end
 
   def option_params
-    params.require(:option).permit(:option1, :correct_key, :question_id)
+    params.require(:option).permit(:option1, :correct_key)
   end
 end
 
