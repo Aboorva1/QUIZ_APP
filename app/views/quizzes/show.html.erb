@@ -1,14 +1,28 @@
 <h1 style="color: #991566; text-align:center;"><%= @quiz.title %></h1>
-
-
+<div class="error">
+<%= flash[:error] %>
+</div>
 <% if current_user.isadmin? %>
+<section class="vh-100">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-9 col-lg-6 col-xl-5">
+        <h2>Add question</h2>
+        <%= render 'questions/form' %>
+      </div>
+      <% if @quiz.questions.count != 0 %>
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+          <h2>Added questions</h2>
+        </div>
+        <%= render @quiz.questions %> 
+      </div>
+    </div>
+  </div>
+</section>
+<% end %>
 
-  <% if @quiz.questions.count != 0 %>
-    <%= render @quiz.questions %> 
-  <% end %>
-
-  <h2>Add question</h2>
-  <%= render 'questions/form' %>
+<%= link_to 'Back', quizzes_path, class: "btn btn-xs btn-success" %>
 
 <ul>
   <li><%= link_to "Edit quiz title", edit_quiz_path(@quiz) %></li>
@@ -24,3 +38,6 @@
         <%= 'Questions yet to be added' %>
     <% end %>
 <% end %>
+
+
+          
