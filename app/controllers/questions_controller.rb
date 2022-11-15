@@ -21,11 +21,8 @@ class QuestionsController < ApplicationController
         @question = Question.find(params[:id])
       end
     
-     def update
-      correct_index = params[:question][:options_attributes][:correct_key]
+      def update
         if (@question.update(question_params))
-          update_correct_answer = @question.options[correct_index.to_i]
-          update_correct_answer.update(:correct_key => true)
           redirect_to @quiz
         else
           render :edit
@@ -37,13 +34,18 @@ class QuestionsController < ApplicationController
         @quiz = Quiz.find(params[:quiz_id])
         @question = Question.new(question_params)
         correct_index = params[:question][:options_attributes][:correct_key]
-        if @question.save
-          @question.options.build
+        if correct_index.present?
           update_correct_answer = @question.options[correct_index.to_i]
           update_correct_answer.update(:correct_key => true)
-          redirect_to @quiz
+          if @question.save
+            redirect_to @quiz
+          else
+            flash[:error] = "Fill all questions and options"
+            redirect_to @quiz
+          end
         else  
-          redirect_to @quiz
+            flash[:error] = "Fill all questions, options and select correct key"
+            redirect_to @quiz
         end 
       end
 
