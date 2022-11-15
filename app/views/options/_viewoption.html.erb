@@ -18,8 +18,8 @@
           <%= link_to(edit_quiz_question_option_path(@quiz, @question, option), class: "btn btn-small") do %>
             Edit <i class="icon-edit icon-white"></i>
           <% end %>
-
        
+
           <%= link_to 'Destroy', quiz_question_option_path(@quiz, @question, option), 
           method: :delete,
           data: { confirm: "Are you sure?" }, class: "btn btn-small btn-danger" %>

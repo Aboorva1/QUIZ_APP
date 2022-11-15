@@ -1,9 +1,9 @@
 
 <h1>My Quizzes</h1>
 <%= form_tag answer_myquiz_path, :method => "get" do %>
-<%= label_tag(:search, "Search by quiz" )%>
-<%= text_field_tag :search, params[:search] %>
-<%= submit_tag("Search", :quiz_name => nil)%>
+  <%= label_tag(:search, "Search by quiz" )%>
+  <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag("Search", :quiz_name => nil)%>
 <% end %>
 <table class="table table-striped table-bordered table-condensed">
 <thead class="thead-dark">

@@ -1,15 +1,15 @@
 <%= form_with(model: [@quiz, @question]) do |form| %>
 <%= form.hidden_field :quiz_id, value: @quiz.id%>
   <p>
-    <%= form.label :body %><br>
+  <div>
+    <%= form.label :Question %><br>
     <%= form.text_field :body %>
+  </div>
         <%= form.fields_for :options, @options do |option_form| %>
             <p>
             <%= option_form.label :option %><br>
             <%= option_form.text_field :option1 %>
             <%= option_form.label :correct_option %>
-        
-            <%#= option_form.radio_button :correct_key, true %>
             <%= radio_button_tag "question[options_attributes][correct_key]", option_form.index, option_form.object.correct_key %>
             </p>
         <% end %>
@@ -17,6 +17,7 @@
   </p>
 <% end %>  
   
-<%= link_to 'Back', quizzes_path, class: "btn btn-xs btn-success" %>
+  
+  
 
 <%#= radio_button_tag "question[options_attributes][#{option_form.index}][correct]", true, option_form.object.correct %>

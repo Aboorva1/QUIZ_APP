@@ -3,6 +3,10 @@ class QuizzesController < ApplicationController
   # skip_before_action :verify_authenticity_token, :only => :check_answer
   before_action :authenticate_user!
   before_action :set_quiz, only: [:show, :edit, :update, :destroy]
+   
+  def leaderboard
+    
+  end
 
   def index
     @quizzes = Quiz.all

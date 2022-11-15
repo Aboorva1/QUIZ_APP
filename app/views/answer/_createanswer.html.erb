@@ -10,9 +10,11 @@
           <b><li><%= question.body %></li></b>
           <% question.options.each do |option| %>
             <ul>
+            
             <%= form.radio_button("answers[#{question.id}]", option.option1) %>
             <%= label_tag "#{option.option1}", option.option1 %>
             </ul>
+
           <% end %>
           <% end %>
         <% end %>
