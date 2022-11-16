@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   post 'answer/create_answers'
   get 'answer/result'
   get 'answer/myquiz'
-  get 'quizzes/leaderboard'
+  get 'answer/leaderboard'
   devise_for :users, controllers: { registrations: "registrations" }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   # root 'home#index'

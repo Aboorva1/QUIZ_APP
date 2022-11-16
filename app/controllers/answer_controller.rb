@@ -37,9 +37,12 @@ class AnswerController < ApplicationController
       end
   end
 
-
   def myquiz
     @user_quizzes = UserQuiz.where(user_id: current_user.id).search(params[:search]) 
+  end
+
+  def leaderboard
+    @user_quizzes = UserQuiz.order("score DESC, created_at DESC").first(10)
   end
 
   def user_answer_params
