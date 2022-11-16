@@ -1,10 +1,7 @@
 class AnswerController < ApplicationController
   
   $score = 0 
-  def index
-    
-  end
-
+  
   def create_answers
     questions_count = Question.where(quiz_id: params[:quiz_id]).count 
       if params[:answers].present? && questions_count == params[:answers].to_enum.to_h.count
