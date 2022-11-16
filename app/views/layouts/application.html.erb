@@ -18,21 +18,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <%= favicon_link_tag asset_path('logo.png') %>
   </head>
-<div style = "margin: 0;padding:25px">
-  <body>    
-    <% if user_signed_in? %>
-    Logged in as <strong><%= current_user.email%></strong>.
-    <%= link_to 'Edit profile', edit_user_registration_path%> |
-    <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-    <% else %>
-    <%= link_to "Sign up", new_user_registration_path %> |
-    <%= link_to "Login", new_user_session_path %>
-    <% end %>
 
+  <body>   
+  <%= render "layouts/navbar" %> 
     <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <p class="alert"><%= alert %></p>    
 	<%= yield %>
-
 </body>
-  </div>
 </html>
