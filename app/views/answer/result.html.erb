@@ -4,13 +4,18 @@
     <div class = 'index'>
     <% if $score > 0 %>
     <img src="https://media.istockphoto.com/id/1183252990/vector/first-prize-gold-trophy-icon-prize-gold-trophy-winner-first-prize-vector-illustration-and.jpg?s=612x612&w=0&k=20&c=cr3yNa3yDHeqaN_-2W8TmGvuZ2hLXufO75KOdjY-1uo="
-          class= "img-fluid">
-        
+          class= "img-fluid"> 
     <% elsif $score == 0%>
       <h5>Try again to get good score</h5>
     <% end %>
-    <h3 class="mt-3 mb-3" >Your score is </h3>
-    <%= $score * 10 %> 
+      <h3 class="mt-3 mb-3" >Your score is </h3>
+      <%= $score * 10 %> 
+      <p>
+      <h3 class="mt-3 mb-3" >Correct </h3>
+      <%= $score %> 
+      <h3 class="mt-3 mb-3" >Wrong </h3>
+      <%#= $questions_count - $score %> 
+      </p>
     </div>
   </div>
 </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_15_101512) do
+ActiveRecord::Schema.define(version: 2022_11_17_095207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,15 +50,10 @@ ActiveRecord::Schema.define(version: 2022_11_15_101512) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "events", force: :cascade do |t|
-    t.decimal "score"
-    t.decimal "current_question"
-    t.decimal "highscore"
-    t.datetime "last_access"
+  create_table "categories", force: :cascade do |t|
+    t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id", null: false
-    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "genres", force: :cascade do |t|
@@ -68,12 +63,11 @@ ActiveRecord::Schema.define(version: 2022_11_15_101512) do
   end
 
   create_table "options", force: :cascade do |t|
-    t.string "option1"
+    t.string "option"
     t.bigint "question_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "correct_key", default: false
-    t.string "answer"
+    t.boolean "boolean_correct_answer", default: false
     t.index ["question_id"], name: "index_options_on_question_id"
   end
 
@@ -82,7 +76,6 @@ ActiveRecord::Schema.define(version: 2022_11_15_101512) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "quiz_id", null: false
-    t.string "correct_answer"
     t.index ["quiz_id"], name: "index_questions_on_quiz_id"
   end
 
@@ -94,12 +87,6 @@ ActiveRecord::Schema.define(version: 2022_11_15_101512) do
     t.index ["user_id"], name: "index_quizzes_on_user_id"
   end
 
-  create_table "subgenres", force: :cascade do |t|
-    t.string "title"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "user_answers", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "quiz_id", null: false
@@ -107,8 +94,7 @@ ActiveRecord::Schema.define(version: 2022_11_15_101512) do
     t.bigint "option_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "user_key"
-    t.text "answer_key"
+    t.string "user_correct_answer"
     t.index ["option_id"], name: "index_user_answers_on_option_id"
     t.index ["question_id"], name: "index_user_answers_on_question_id"
     t.index ["quiz_id"], name: "index_user_answers_on_quiz_id"
@@ -148,7 +134,6 @@ ActiveRecord::Schema.define(version: 2022_11_15_101512) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "events", "users"
   add_foreign_key "questions", "quizzes"
   add_foreign_key "user_answers", "options"
   add_foreign_key "user_answers", "questions"

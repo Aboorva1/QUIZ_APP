@@ -1,13 +1,12 @@
 
-<%= form_with(model: [@quiz, @question, @option], local: true) do |form| %>
-  
+<%= form_with(model: [@quiz, @question, @option], local: true) do |form| %> 
   <%= form.hidden_field :question_id, value: @question.id %>
   
   <p>
     <%= form.label :option %><br>
-    <%= form.text_field :option1 %>
+    <%= form.text_field :option %>
     <%= form.label :correct_key %>
-    <%= form.radio_button :correct_key, checked: true %>
+    <%= form.radio_button :boolean_correct_answer, checked: true %>
   </p>
   <%= form.submit "Save Options" %>
   

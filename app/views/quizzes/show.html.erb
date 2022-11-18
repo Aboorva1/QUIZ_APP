@@ -18,10 +18,11 @@
         </div>
         <%= render @quiz.questions %> 
       </div>
+      <% end %>
     </div>
   </div>
 </section>
-<% end %>
+
 
 <%= link_to 'Back', quizzes_path, class: "btn btn-xs btn-success" %>
 
@@ -33,11 +34,11 @@
 </ul>
 
 <% else %>
-    <% if @quiz.questions.count != 0 %>
-        <%= render partial: "answer/createanswer", :locals => {quiz_questions: @quiz.questions} %>    
-    <% else %>
-        <%= 'Questions yet to be added' %>
-    <% end %>
+  <% if @quiz.questions.count != 0 %>
+    <%= render partial: "answer/quiz_page", :locals => {quiz_questions: @quiz.questions} %>    
+  <% else %>
+    <%= 'Questions yet to be added' %>
+  <% end %>
 <% end %>
 
 
