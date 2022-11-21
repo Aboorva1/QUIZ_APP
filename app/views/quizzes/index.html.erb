@@ -5,7 +5,7 @@
 <div class="container py-3">
   <div class="col-md-2 p-0">
     <%= render 'category_panel' %>
-    <% if current_user.isadmin? %>
+    <% if current_user.is_admin? %>
       <%= link_to "New category", new_category_path, :class=>"btn btn-info" %>  
     <% end %>
   </div>
@@ -18,10 +18,13 @@
       <div class="tab-pane fade shadow rounded bg-white show active p-5" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
         <ul>
         <% @quizzes.each do |quiz| %>
+        <div style = "padding: 0rem 0rem;">
+          <ul class="list-group list-group-flush">
           <p><%= link_to quiz.title, quiz %></p>
+          </ul> 
         <% end %>
         </ul>
-        <% if current_user.isadmin? %>
+        <% if current_user.is_admin? %>
           <%= link_to "New Quiz", new_quiz_path, :class=>"btn btn-info" %> 
         <% end %>
       </div>
@@ -29,7 +32,6 @@
   </div>
 </div>
 </div>
-
 
 
 
