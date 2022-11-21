@@ -1,16 +1,6 @@
 
 <div class = 'index'>
   <%= image_tag "quizlogo.jpg", height: 300 , width:500%>
-  <ul>
-  <% @quizzes.each do |quiz| %>
-    <p><%= link_to quiz.title, quiz %></p>
-  <% end %>
-</ul>
-
-<% if current_user.isadmin? %>
-<%= link_to "New Quiz", new_quiz_path, :class=>"btn btn-info" %> 
-<% end %>
-  <%= image_tag "quizlogo.jpg", height: 300 , width:500%>
 </div>
 <div class="container py-3">
   <div class="col-md-2 p-0">
@@ -21,6 +11,7 @@
   </div>
 </div>
 
+<div class="panel">
 <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
   <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
     <div class="tab-content" id="v-pills-tabContent">
@@ -36,6 +27,7 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 
 
