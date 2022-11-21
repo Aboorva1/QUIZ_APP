@@ -1,0 +1,37 @@
+
+<div class = "tables">
+
+<h1>Leaderboard</h1>
+<h2>Top 10 scores</h2>
+<p>
+<table class="table table-striped table-bordered table-condensed">
+<thead class="thead-dark">
+<tr>
+  <th class="text-center">Name</th>
+  <th class="text-center">Quiz</th>
+  <th class="text-center">Score</th>
+  <th class="text-center">Date</th>
+</tr>
+</thead>
+<tbody>
+  <% @user_quizzes.zip(@images) do |user_quiz, image| %>
+    <tr>
+      <td>
+        <p>
+        <%if image.attached?%>
+          <%= image_tag(image,:class=> "img") %>
+        <%else%> 
+          <img class= "img" src ="https://pic.onlinewebfonts.com/svg/img_162044.png">
+        <% end %>
+        <%= user_quiz.user.name %>
+        </p>
+      </td> 
+      <td><%= user_quiz.quiz.title %></td> 
+      <td><%= user_quiz.score %></td>   
+      <td><%= user_quiz.created_at.strftime("%d %b %Y") %></td>      
+    </tr>
+  <% end %>
+</tbody>
+</table>
+</p>
+</div>
