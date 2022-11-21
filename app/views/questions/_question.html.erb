@@ -3,7 +3,7 @@
     <p>    
     <li>
       <%= link_to question.body, quiz_question_path(@quiz, question) %>
-      <%= link_to "Edit", edit_quiz_question_path(@quiz, question), class: "btn btn-xs btn-primary" %>
+      <%= link_to "✎", edit_quiz_question_path(@quiz, question), class: "btn btn-xs btn-primary" %>
       <%= link_to 'Destroy', [@question.quiz, question],
               method: :delete,
               data: { confirm: "Are you sure?" }, class: "btn btn-xs btn-danger" %>

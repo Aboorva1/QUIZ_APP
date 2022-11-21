@@ -7,10 +7,10 @@
   </div>
   <%= form.fields_for :options, @options do |option_form| %>
     <p>
-    <%= option_form.label :option %><br>
-    <%= option_form.text_field :option %>
+    <%= option_form.label :choice %><br>
+    <%= option_form.text_field :choice %>
     <%= option_form.label :correct_option %>
-    <%= radio_button_tag "question[options_attributes][boolean_correct_answer]", option_form.index, option_form.object.boolean_correct_answer %>
+    <%= radio_button_tag "question[options_attributes][is_correct_answer]", option_form.index, option_form.object.is_correct_answer %>
     </p>
   <% end %>
   <%= form.submit %>
