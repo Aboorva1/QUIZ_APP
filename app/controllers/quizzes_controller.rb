@@ -1,12 +1,7 @@
 class QuizzesController < ApplicationController
 
-  # skip_before_action :verify_authenticity_token, :only => :check_answer
   before_action :authenticate_user!
   before_action :set_quiz, only: [:show, :edit, :update, :destroy]
-   
-  def leaderboard
-    
-  end
 
   def index
     if(params.has_key?(:category_name))
@@ -54,13 +49,19 @@ class QuizzesController < ApplicationController
 
   def destroy
     @quiz.destroy
+    if @quiz.destroyed?
+      flash[:success] = 'Quiz is destroyed'
+    else
+      flash[:error] = 'Failed to destroy'
+    end
     redirect_to root_path
   end
 
   private
-    def set_quiz
-      @quiz = Quiz.find(params[:id])
-    end
+
+  def set_quiz
+    @quiz = Quiz.find(params[:id])
+  end
 
   def quiz_params
     params.require(:quiz).permit(:category_id, :category_name, :title)

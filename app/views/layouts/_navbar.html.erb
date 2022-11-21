@@ -4,9 +4,9 @@
   <% if user_signed_in? %> 
     
       <li><%= link_to "Home", quizzes_path %></li> 
-      <li><%= link_to "Leaderboard", answer_leaderboard_path %></li>
+      <li><%= link_to "Leaderboard", leader_board_index_path %></li>
       <% if !current_user.isadmin? %>
-      <li><%= link_to "My Quiz", answer_myquiz_path %></li> 
+      <li><%= link_to "My Quiz", my_quiz_user_quizzes_path %></li> 
       <%end%>
     <p>
     <div class="right-nav">

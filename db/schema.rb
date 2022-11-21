@@ -63,7 +63,6 @@ ActiveRecord::Schema.define(version: 2022_11_21_041105) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "quiz_id", null: false
-    t.string "correct_answer"
     t.index ["quiz_id"], name: "index_questions_on_quiz_id"
   end
 
@@ -78,12 +77,6 @@ ActiveRecord::Schema.define(version: 2022_11_21_041105) do
     t.index ["user_id"], name: "index_quizzes_on_user_id"
   end
 
-  create_table "subgenres", force: :cascade do |t|
-    t.string "title"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "user_answers", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "quiz_id", null: false
@@ -91,8 +84,7 @@ ActiveRecord::Schema.define(version: 2022_11_21_041105) do
     t.bigint "option_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "user_key"
-    t.text "answer_key"
+    t.string "user_correct_answer"
     t.index ["option_id"], name: "index_user_answers_on_option_id"
     t.index ["question_id"], name: "index_user_answers_on_question_id"
     t.index ["quiz_id"], name: "index_user_answers_on_quiz_id"
@@ -132,7 +124,6 @@ ActiveRecord::Schema.define(version: 2022_11_21_041105) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "events", "users"
   add_foreign_key "questions", "quizzes"
   add_foreign_key "quizzes", "categories"
   add_foreign_key "user_answers", "options"

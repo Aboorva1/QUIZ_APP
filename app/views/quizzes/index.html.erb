@@ -1,11 +1,9 @@
 
 <div class = 'index'>
-<%= image_tag "quizlogo.jpg", height: 300 , width:500%>
-<ul>
+  <%= image_tag "quizlogo.jpg", height: 300 , width:500%>
+  <ul>
   <% @quizzes.each do |quiz| %>
-
     <p><%= link_to quiz.title, quiz %></p>
-
   <% end %>
 </ul>
 
@@ -39,8 +37,6 @@
     </div>
   </div>
 </div>
-
-
 
 
 

@@ -1,7 +1,5 @@
 
 <h1>Edit Question</h1>
-
-<%#= render 'form' %>
 <%= form_with(model: [@quiz, @question]) do |form| %>
 <%= form.hidden_field :quiz_id, value: @quiz.id%>
   <p>
