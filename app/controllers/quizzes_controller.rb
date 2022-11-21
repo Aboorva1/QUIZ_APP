@@ -9,7 +9,12 @@ class QuizzesController < ApplicationController
   end
 
   def index
-    @quizzes = Quiz.all
+    if(params.has_key?(:category_name))
+      @quizzes = Quiz.where(category_name: params[:category_name]).order("created_at desc")
+    else
+      @quizzes = Quiz.all.order("created_at desc")
+    end
+    @categories = Category.all
   end
 
   def show
@@ -24,7 +29,7 @@ class QuizzesController < ApplicationController
   
   def create
     @quiz = Quiz.new(quiz_params)
-
+    set_category_name
     respond_to do |format|
       if @quiz.save
         format.html { redirect_to @quiz, notice: "Quiz created!" }
@@ -39,7 +44,8 @@ class QuizzesController < ApplicationController
   end
 
   def update
-    if @quiz.update_attributes(quiz_params)
+    set_category_name
+    if @quiz.update(quiz_params)
       redirect_to @quiz
     else
       render :edit
@@ -56,8 +62,13 @@ class QuizzesController < ApplicationController
       @quiz = Quiz.find(params[:id])
     end
 
-    def quiz_params
-      params.require(:quiz).permit(:title)
-    end
+  def quiz_params
+    params.require(:quiz).permit(:category_id, :category_name, :title)
+  end
+
+  def set_category_name
+    @quiz.category_name = Category.find_by(id: quiz_params[:category_id]).title
+  end
 end
+
 
