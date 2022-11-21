@@ -1,18 +1,9 @@
 <div class="page-header">
   <div class="span10">
     <h1><%= @question.body %></h1>
-    
+    <% if @question.options.present? %>
+      <%= render partial: "options/list_options", locals: {question_options: @question.options} %>
+    <% end %>
+  </div>
+</div>
 
-
-<% if @question.options.present? %>
-  <%= render partial: "options/viewoption", locals: {question_options: @question.options} %>
-<% end %>
-
-<%#= link_to "Add options", new_quiz_question_option_path(@quiz, @question, @option), class: "btn btn-warning btn-rounded"%>
-<%#= render :template => "options/new" %>
-
-<%#= render :template => "options/new", :locals => {:quiz => @quiz, :question => @question, :option => @option}%>
-
-<%# <h2>Add question</h2> %>
-<%#= render 'options/form' %>
-<%#= link_to "Edit", edit_quiz_question_path(@quiz, question), class: "btn btn-xs btn-primary" %>

@@ -1,20 +1,7 @@
 Rails.application.routes.draw do
-  
-  get 'answer/create_answers'
-  post 'answer/create_answers'
-  get 'answer/result'
-  get 'answer/myquiz'
-  get 'answer/leaderboard'
+  post 'user_quizzes/user_quiz_page'
   devise_for :users, controllers: { registrations: "registrations" }
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  # root 'home#index'
-
-  # resources :quizzes
-  # get '/quizzes/:id/leaderboard' => "quizzes#leaderboard"
-  # post '/quizzes/:id' => "quizzes#check_answer"
-
-  # get '/home/leaderboard' => "home#user_board"
-
+  
   root "quizzes#index"
   resources :quizzes do 
     resources :questions do
@@ -23,7 +10,15 @@ Rails.application.routes.draw do
       end
     end
   end
+  resources :categories
+  resources :leader_board
+  resources :user_quizzes do
+    collection do
+      get 'result'
+      get 'my_quiz'
+    end
+  end  
+  
 end
-
 
 
