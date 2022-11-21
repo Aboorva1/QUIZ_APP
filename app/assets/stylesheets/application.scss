@@ -10,11 +10,9 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
- */
+*/
 
-
+ @import "bootstrap";
  
 .index{
     text-align: center;
@@ -189,3 +187,18 @@ text-transform: uppercase; font-size: 14px;
         -moz-border-radius: 100px;
     
     }
+.tables{
+    margin: 0;
+    padding: 0px 60px;
+}
+
+.panel{
+    position: absolute;
+    top: 110%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+  
+    display: inline-block;
+    vertical-align: top;
+    overflow:auto;
+}

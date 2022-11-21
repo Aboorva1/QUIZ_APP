@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_17_095207) do
+ActiveRecord::Schema.define(version: 2022_11_21_130244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,32 +42,19 @@ ActiveRecord::Schema.define(version: 2022_11_17_095207) do
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
-
-  create_table "answers", force: :cascade do |t|
-    t.text "body"
-    t.boolean "correctkey"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
+  
   create_table "categories", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "genres", force: :cascade do |t|
-    t.string "title"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "options", force: :cascade do |t|
-    t.string "option"
+    t.string "choice"
     t.bigint "question_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "boolean_correct_answer", default: false
+    t.boolean "is_correct_answer", default: false
     t.index ["question_id"], name: "index_options_on_question_id"
   end
 
@@ -84,6 +71,9 @@ ActiveRecord::Schema.define(version: 2022_11_17_095207) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
+    t.bigint "category_id"
+    t.string "category_name"
+    t.index ["category_id"], name: "index_quizzes_on_category_id"
     t.index ["user_id"], name: "index_quizzes_on_user_id"
   end
 
@@ -115,7 +105,7 @@ ActiveRecord::Schema.define(version: 2022_11_17_095207) do
 
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
-    t.boolean "isadmin", default: false, null: false
+    t.boolean "is_admin", default: false, null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -135,6 +125,7 @@ ActiveRecord::Schema.define(version: 2022_11_17_095207) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "questions", "quizzes"
+  add_foreign_key "quizzes", "categories"
   add_foreign_key "user_answers", "options"
   add_foreign_key "user_answers", "questions"
   add_foreign_key "user_answers", "quizzes"

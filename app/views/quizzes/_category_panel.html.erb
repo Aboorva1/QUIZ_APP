@@ -1,0 +1,18 @@
+<div class="nav flex-column nav-pills"  aria-orientation="vertical">
+  <%= link_to root_path, class: "nav-link mb-3 shadow active", role: "tab" do %>
+    <span class="font-weight-bold small text-uppercase">All</p></span>
+  <% end %>
+  <% @categories.each do |category| %>
+    <%= link_to quizzes_path(category_name: category.title), class: "nav-link mb-3 shadow active", role: "tab" do %>
+      <span class="font-weight-bold small text-uppercase"><%= category.title %></p></span>
+    <% end %>
+    <% if current_user.is_admin? %>
+    <ul>
+      <%= link_to "✏", edit_category_path(category) %>
+      <%= link_to "❎", category_path(category),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %>
+    </ul>
+    <% end %>
+  <% end %>
+</div>
