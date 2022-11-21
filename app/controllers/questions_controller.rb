@@ -29,10 +29,10 @@ class QuestionsController < ApplicationController
   def create      
     @quiz = Quiz.find(params[:quiz_id])
     @question = Question.new(question_params)
-    correct_index = params[:question][:options_attributes][:boolean_correct_answer]
+    correct_index = params[:question][:options_attributes][:is_correct_answer]
     if correct_index.present?
-      update_correct_answer = @question.options[correct_index.to_i]
-      update_correct_answer.update(:boolean_correct_answer => true)
+      correct_answer = @question.options[correct_index.to_i]
+      correct_answer.update(:is_correct_answer => true)
       if !@question.save
         flash[:error] = "Fill all questions and options" 
       end
@@ -60,7 +60,7 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:body, :quiz_id, options_attributes: [:id, :option, :boolean_correct_answer])
+    params.require(:question).permit(:body, :quiz_id, options_attributes: [:id, :choice, :is_correct_answer])
   end
 end
 

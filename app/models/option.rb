@@ -1,6 +1,6 @@
 class Option < ApplicationRecord
     belongs_to :question
-    validates :option, presence: true
+    validates :choice, presence: true
     has_many :user_answers, dependent: :destroy  
 end
 

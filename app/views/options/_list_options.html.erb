@@ -11,8 +11,8 @@
 <tbody>
   <% question_options.all.each do |option| %>
     <tr>
-      <td><%= option.option %></td>
-      <td><%= option.boolean_correct_answer %></td>         
+      <td><%= option.choice %></td>
+      <td><%= option.is_correct_answer %></td>         
       <td>  
       <%= link_to(edit_quiz_question_option_path(@quiz, @question, option), class: "btn btn-small") do %>
         Edit <i class="icon-edit icon-white"></i>

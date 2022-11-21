@@ -35,12 +35,12 @@ class OptionsController < ApplicationController
   end
 
   def falsify_all_others
-    falsify_others = Option.where("question_id = ? AND id NOT IN (?)" , params[:question_id], @option.id).update_all(:boolean_correct_answer => false)
-    @option.boolean_correct_answer = true if params[:boolean_correct_answer]
+    falsify_others = Option.where("question_id = ? AND id NOT IN (?)" , params[:question_id], @option.id).update_all(:is_correct_answer => false)
+    @option.is_correct_answer = true if params[:is_correct_answer]
   end
 
   def option_params
-    params.require(:option).permit(:option, :boolean_correct_answer)
+    params.require(:option).permit(:choice, :is_correct_answer)
   end
 end
 

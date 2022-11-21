@@ -3,10 +3,10 @@
   <%= form.hidden_field :question_id, value: @question.id %>
   
   <p>
-    <%= form.label :option %><br>
-    <%= form.text_field :option %>
-    <%= form.label :correct_key %>
-    <%= form.radio_button :boolean_correct_answer, checked: true %>
+    <%= form.label :choice %><br>
+    <%= form.text_field :choice %>
+    <%= form.label :correct_option %>
+    <%= form.radio_button :is_correct_answer, checked: true %>
   </p>
   <%= form.submit "Save Options" %>
   
