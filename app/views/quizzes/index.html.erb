@@ -11,27 +11,26 @@
   </div>
 </div>
 
-<div class="panel">
-<div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-  <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
-    <div class="tab-content" id="v-pills-tabContent">
-      <div class="tab-pane fade shadow rounded bg-white show active p-5" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-        <ul>
-        <% @quizzes.each do |quiz| %>
-        <div style = "padding: 0rem 0rem;">
-          <ul class="list-group list-group-flush">
+<div class = "panel">
+<table class="table table-borderless">
+<thead>
+<tr>
+  <th class="text-center">Quizzes</th>
+</tr>
+</thead>
+<tbody>
+  <% @quizzes.each do |quiz| %>
+    <tr>
+      <td class="pt-2">
+        <ul class="list-group list-group-flush">
           <p><%= link_to quiz.title, quiz %></p>
-          </ul> 
-        <% end %>
-        </ul>
-        <% if current_user.is_admin? %>
+          </ul>
+      </td>       
+    </tr>
+  <% end %>
+</tbody>
+</table>
+<% if current_user.is_admin? %>
           <%= link_to "New Quiz", new_quiz_path, :class=>"btn btn-info" %> 
         <% end %>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-
-
 
