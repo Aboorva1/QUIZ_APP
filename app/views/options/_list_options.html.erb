@@ -13,10 +13,8 @@
     <tr>
       <td><%= option.choice %></td>
       <td><%= option.is_correct_answer %></td>         
-      <td>  
-      <%= link_to(edit_quiz_question_option_path(@quiz, @question, option), class: "btn btn-small") do %>
-        Edit <i class="icon-edit icon-white"></i>
-      <% end %>
+      <td> 
+      <%= link_to "✎", edit_quiz_question_option_path(@quiz, @question, option), class: "btn btn-xs btn-primary" %> 
       <%= link_to 'Destroy', quiz_question_option_path(@quiz, @question, option), 
         method: :delete,
         data: { confirm: "Are you sure?" }, class: "btn btn-small btn-danger" %> 
@@ -28,5 +26,5 @@
 </div>
 
 <p>
-<%= link_to 'Back', quizzes_path %>
+<%= link_to 'Back', quizzes_path, class: "btn btn-xs btn-info" %>
 </p>

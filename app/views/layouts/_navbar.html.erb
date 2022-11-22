@@ -1,29 +1,33 @@
 <header>
-<div class='container'>
-  <nav>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <strong class="navbar-brand">Quiz App</strong>
+      <h4>Hi !</h4>
+    </div>
   <% if user_signed_in? %> 
-    
+    <strong>
       <li><%= link_to "Home", quizzes_path %></li> 
       <li><%= link_to "Leaderboard", leader_board_index_path %></li>
-      <% if !current_user.isadmin? %>
-      <li><%= link_to "My Quiz", my_quiz_user_quizzes_path %></li> 
+      <% if !current_user.is_admin? %>
+        <li><%= link_to "My Quiz", my_quiz_user_quizzes_path %></li> 
       <%end%>
-    <p>
-    <div class="right-nav">
-    <h4>Hi <strong><%= current_user.name%></strong></h4>
-    <%if current_user.image.attached?%>
-      <%= image_tag(current_user.image,:class=> "img") %>
-    <%else%> 
-      <% if current_user.isadmin? %>
-        <img class= "img" src ="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe-OwJLExW6kXjgbYw_PfokaYVSPFlE8_Idg&usqp=CAU">
-      <% else %>
-        <img class= "img" src ="https://pic.onlinewebfonts.com/svg/img_162044.png">
+
+      <div class="right-nav">
+      <%if current_user.image.attached?%>
+        <%= image_tag(current_user.image,:class=> "img") %>
+      <%else%> 
+        <% if current_user.is_admin? %>
+          <img class= "img" src ="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe-OwJLExW6kXjgbYw_PfokaYVSPFlE8_Idg&usqp=CAU">
+        <% else %>
+          <img class= "img" src ="https://pic.onlinewebfonts.com/svg/img_162044.png">
+        <% end %>
       <% end %>
-    <% end %>
 
       <%= link_to 'Edit profile', edit_user_registration_path%> |
       <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-    <% end %>
-  </nav>
-</div>
+    </strong> 
+  <% end %>
+  </div>
+</nav>
 </header>
