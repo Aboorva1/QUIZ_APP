@@ -1,5 +1,15 @@
 
-<h1><%= @quiz.title %></h1>
+<div class="text-center">
+  <div class="fs-1"><%= @quiz.title %>
+  <% if current_user.is_admin? %>
+    <%= link_to "✏", edit_quiz_path(@quiz), class: "btn btn-outline-warning" %>
+    <%= link_to "❎", quiz_path(@quiz), class: "btn btn-outline-secondary",
+      method: :delete,
+      data: { confirm: "Are you sure?" } %>
+  <% end %>
+  <%= link_to 'Back', quizzes_path, class: "btn btn-xs btn-success" %>
+  </div>
+</div>
 <div class="error">
 <%= flash[:error] %>
 </div>
@@ -21,13 +31,7 @@
         <% end %>
       </div>
     </div>
-    <%= link_to 'Back', quizzes_path, class: "btn btn-xs btn-success" %>
-    <ul>
-      <li><%= link_to "Edit quiz title", edit_quiz_path(@quiz) %></li>
-      <li><%= link_to "Destroy quiz", quiz_path(@quiz),
-                  method: :delete,
-                  data: { confirm: "Are you sure?" } %></li>
-    </ul>
+    
 <% else %>
   <% if @quiz.questions.count != 0 %>
     <%= render partial: "user_quizzes/user_quiz_page", :locals => {quiz_questions: @quiz.questions} %>    
