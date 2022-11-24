@@ -17,13 +17,13 @@
   <section class="vh-100">
     <div class="container-fluid h-custom">
       <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-md-9 col-lg-4 col-xl-4">
+        <div class="col-md-9 col-lg-6 col-xl-4">
           <%= render 'questions/form' %>
         </div>
         <% if @quiz.questions.count != 0 %>
           <div class="col-md-8 col-lg-2 b-4 col-xl-5 offset-xl-1">
             <div class="align-items-center justify-content-center justify-content-lg-start">
-              <p class="fs-3 pt-xl-5 pl-xl-4"><strong>Added questions</strong></p>
+              <p class="fs-3"><strong>Added questions</strong></p>
             </div>
             <%= render @quiz.questions %> 
           </div>
