@@ -1,20 +1,32 @@
-<%= form_with(model: [@quiz, @question]) do |form| %>
-<%= form.hidden_field :quiz_id, value: @quiz.id%>
-  <p>
-  <div>
-    <%= form.label :Question %><br>
-    <%= form.text_field :body %>
-  </div>
-  <%= form.fields_for :options, @options do |option_form| %>
-    <p>
-    <%= option_form.label :choice %><br>
-    <%= option_form.text_field :choice %>
-    <%= option_form.label :correct_option %>
-    <%= radio_button_tag "question[options_attributes][is_correct_answer]", option_form.index, option_form.object.is_correct_answer %>
-    </p>
-  <% end %>
-  <%= form.submit %>
-  </p>
-<% end %>  
+
+  <section class="vh-100 gradient-custom">
+  <strong><div class="fs-3 pt-xl-5 pl-xl-4">Add question</div></strong>
+    <div class="row h-50">
+      <div class="col-10">
+        <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+          <div class="card-body">
+            <%= form_with(model: [@quiz, @question]) do |form| %>
+            <%= form.hidden_field :quiz_id, value: @quiz.id%>
+            <p>
+            <div>
+              <b><%= form.label :Question %></b><br>
+              <%= form.text_field :body %>
+            </div>
+            <%= form.fields_for :options, @options do |option_form| %>
+            <p>
+            <b><%= option_form.label :choice %></b><br>
+            <%= option_form.text_field :choice %>
+            <b><%= option_form.label :correct_option %></b>
+            <%= radio_button_tag "question[options_attributes][is_correct_answer]", option_form.index, option_form.object.is_correct_answer %>
+            </p>
+            <% end %>
+            <%= form.submit %>
+            </p>
+            <% end %>  
+          </div>
+        </div>
+      </div>
+    </div> 
+  </section>
   
   
