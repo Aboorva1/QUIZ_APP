@@ -21,7 +21,7 @@ User.create!(id:'1',
     password_confirmation: 'app@success',
     is_admin: true)
 
-10.times do
+1.times do
   User.create!(     
     name: Faker::Name.name,
     email: Faker::Internet.email,
@@ -31,19 +31,19 @@ User.create!(id:'1',
   )
 end
 
-10.times do
+1.times do
   category = Category.create!( 
     title: Faker::Lorem.word
   )
 
-  5.times do
+  2.times do
     quiz = Quiz.create!(
       category_id: category.id,
       category_name: category.title,
       title: Faker::Lorem.sentence(word_count: 2)
     )
 
-    10.times do
+  5.times do
       question = Question.create!(
         body: Faker::Lorem.sentence(word_count: 6),
         quiz_id: quiz.id
