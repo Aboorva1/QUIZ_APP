@@ -1,13 +1,28 @@
 
-<%= form_with(model: [@quiz, @question, @option], local: true) do |form| %> 
-  <%= form.hidden_field :question_id, value: @question.id %>
-  
-  <p>
-    <%= form.label :choice %><br>
-    <%= form.text_field :choice %>
-    <%= form.label :correct_option %>
-    <%= form.radio_button :is_correct_answer, checked: true %>
-  </p>
-  <%= form.submit "Save Options" %>
-  
-<% end %>
+
+<section class="vh-100 gradient-custom">
+  <div class="container h-50">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-2 col-xl-5">
+        <div class="card" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+            <%= form_with(model: [@quiz, @question, @option], local: true) do |form| %> 
+              <%= form.hidden_field :question_id, value: @question.id %>
+              <p class="form-outline mb-4">
+                <%= form.label :choice %><br>
+                <%= form.text_field :choice %>
+              </p>
+              <p class="form-outline mb-4">
+                <%= form.label :correct_option %>
+                <%= form.radio_button :is_correct_answer, checked: true %>
+              </p>
+              <div>
+                <%= form.submit "Save Option" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> 
