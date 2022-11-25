@@ -31,7 +31,7 @@ User.create!(id:'1',
   )
 end
 
-1.times do
+3.times do
   category = Category.create!( 
     title: Faker::Lorem.word
   )
@@ -43,7 +43,7 @@ end
       title: Faker::Lorem.sentence(word_count: 2)
     )
 
-  5.times do
+    5.times do
       question = Question.create!(
         body: Faker::Lorem.sentence(word_count: 6),
         quiz_id: quiz.id
@@ -56,14 +56,13 @@ end
           question_id: question.id
         )
       end
-        option = Option.create!(
-          choice:Faker::Lorem.word,
-          is_correct_answer: true,
-          question_id: question.id
-        )
+      option = Option.create!(
+        choice:Faker::Lorem.word,
+        is_correct_answer: true,
+        question_id: question.id
+      )
     end
   end
 end
-
 
 
