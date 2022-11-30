@@ -1,17 +1,17 @@
 class OptionsController < ApplicationController
 
   before_action :set_option, only: [:edit, :update, :destroy]  
-  before_action :falsify_all_others, only:[:edit, :update]
 
   def edit
     
   end
 
-  def update  
+  def update
+    falsify_all_others if params[:option][:is_correct_answer] == "checked true"
     if (@option.update(option_params))
       redirect_to quiz_question_path(@quiz, @question)
-   else
-     render :edit
+    else
+      render :edit
     end
   end
 
@@ -36,13 +36,10 @@ class OptionsController < ApplicationController
 
   def falsify_all_others
     falsify_others = Option.where("question_id = ? AND id NOT IN (?)" , params[:question_id], @option.id).update_all(:is_correct_answer => false)
-    @option.is_correct_answer = true if params[:is_correct_answer]
+    @option.is_correct_answer = true
   end
 
   def option_params
-    params.require(:option).permit(:choice, :is_correct_answer)
+    params.require(:option).permit(:choice, :is_correct_answer, :question_id)
   end
-end
-
-
-
+end 

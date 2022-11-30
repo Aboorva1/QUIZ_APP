@@ -4,8 +4,8 @@ class Option < ApplicationRecord
 
   validates :choice, presence: true
 
-  validate :options_count
-  validate :correct_answer_count
+  validate :options_count, on: :create
+  validate :correct_answer_count, on: :create
 
   private 
 
