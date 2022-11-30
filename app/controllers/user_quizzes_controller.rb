@@ -8,9 +8,9 @@ class UserQuizzesController < ApplicationController
     @question = Question.where(quiz_id: params[:id]).offset(questions_per_page * @page).limit(questions_per_page)
   end
 
-  def quiz_user_page
+  def save_answer
     if params[:answers].present?
-      quiz_id = set_user_answer(params[:answers])
+      quiz_id = save_user_answer(params[:answers])
       page = params[:page].to_i + 1
       redirect_to user_quiz_path(page: page, id: quiz_id)
     else
@@ -22,7 +22,7 @@ class UserQuizzesController < ApplicationController
 
   def submit_quiz
     if params[:answers].present?
-      quiz_id = set_user_answer(params[:answers])
+      quiz_id = save_user_answer(params[:answers])
       question_scores = []
       questions_count = Question.where(quiz_id: quiz_id).count
       UserAnswer.where(quiz_id: quiz_id).last(questions_count).each do |user_answer|
@@ -33,7 +33,7 @@ class UserQuizzesController < ApplicationController
         user_id: current_user.id,
         score: (question_scores.sum) * 10
       )
-      puts @user_quiz.score
+      @user_quiz.save
       redirect_to result_user_quizzes_path(:id => quiz_id, :quiz_score => @user_quiz.score, :questions_count => questions_count)
     else
       flash[:error] = "Please select one option"
@@ -50,7 +50,7 @@ class UserQuizzesController < ApplicationController
           quiz_id: params[:quiz_id],
           user_id: current_user.id,
           question_id: key,
-          user_correct_answer: Option.find_by(choice: value).is_correct_answer,
+          user_correct_answer: Option.find_by(choice: value, question_id: key).is_correct_answer,
           option_id: Option.find_by(choice: value).id
         )
         if @user_answer.user_correct_answer == 't'
@@ -78,7 +78,7 @@ class UserQuizzesController < ApplicationController
 
   private
 
-  def set_user_answer(answer)
+  def save_user_answer(answer)
     score = 0
     quiz_id = Question.find_by(id: answer.keys.first).quiz_id
     answer.to_enum.to_h.each do |key, value|
@@ -86,7 +86,7 @@ class UserQuizzesController < ApplicationController
         quiz_id: quiz_id,
         user_id: current_user.id,
           question_id: key,
-          user_correct_answer: Option.find_by(choice: value).is_correct_answer,
+          user_correct_answer: Option.find_by(choice: value, question_id: key).is_correct_answer,
           option_id: Option.find_by(choice: value).id
         )
     end
