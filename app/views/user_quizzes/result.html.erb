@@ -2,7 +2,7 @@
 <div class="d-flex justify-content-center mt-4">
   <div class="card p-3 mt-3">
     <div class = 'index'>
-    <% score = params[:score].to_i %>
+    <% score = params[:quiz_score].to_i %>
     <% if score > 0 %>
     <img src="https://media.istockphoto.com/id/1183252990/vector/first-prize-gold-trophy-icon-prize-gold-trophy-winner-first-prize-vector-illustration-and.jpg?s=612x612&w=0&k=20&c=cr3yNa3yDHeqaN_-2W8TmGvuZ2hLXufO75KOdjY-1uo="
           class= "img-fluid"> 
@@ -20,6 +20,6 @@
     </div>
   </div>
 </div>
-<%= link_to "Start again", quiz_path(params[:id]),:class=>"btn btn-info pull-right"  %>
+<p class = "text-center"><%= link_to "Start again", quiz_path(params[:id]),:class=>"btn btn-info pull-right"%></p>
 
 

@@ -1,0 +1,36 @@
+
+<section class="vh-100 gradient-custom">
+  <div class="container py-5 h-50">
+    <div class = "error">
+    <%= flash[:error]%>
+    </div>
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class = "tables">
+        <div class = "quiz">
+        <% if params[:page].to_i == @question_count-1 %>
+          <% path = user_quizzes_submit_path %>
+        <% else %>
+          <% path = user_quizzes_quiz_user_page_path%>
+        <% end%>
+        <%= form_with url: path, method: :post do |form| %>
+        <ol>
+        <% @question.each do |question| %>
+          <% if question.body.present? %>
+            <%= form.hidden_field :page, value: params[:page]%>
+              <%= question.body %>
+              <% question.options.each do |option| %>
+                <ul>
+                <%= form.radio_button("answers[#{question.id}]", option.choice) %>
+                <%= label_tag "#{option.choice}", option.choice %>
+                </ul>
+              <% end %>
+          <% end %>
+        <% end %>
+        <% if params[:page].to_i == @question_count - 1 %>
+          <%= form.submit "Submit quiz", class: "btn btn-primary" %>
+        <% else %>
+          <%= form.submit "Next", class: "btn btn-primary" %>
+        <% end %>
+        </ol>
+<% end %>
+  
