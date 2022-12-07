@@ -246,4 +246,21 @@ text-transform: uppercase; font-size: 14px;
   * html .pagination {
     height: 1%; }
   
+.timer{
+  color: #004085;
+  background: #cce5ff;
+  border: 1px solid #b8daff;
+  height: 45px;
+  padding: 0 8px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 145px;
+}
 
+.time_left_txt{
+    font-weight: 400;
+    font-size: 17px;
+    user-select: none;
+}

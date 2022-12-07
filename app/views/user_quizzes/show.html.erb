@@ -1,3 +1,43 @@
+<div class="timer">Time Left            
+  <script >
+  function startTimer(duration, display) {
+var timer = duration, minutes, seconds;
+setInterval(function () {
+    minutes = parseInt(timer / 60, 10)
+    seconds = parseInt(timer % 60, 10);
+
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    display.textContent = minutes + " " + " " + seconds;
+
+    if (--timer < 0) {
+      document.getElementById("auto_save").value = true;
+      document.getElementById("quiz_form").submit();
+    }
+  console.log(parseInt(seconds))
+  window.localStorage.setItem("seconds",seconds)
+  window.localStorage.setItem("minutes",minutes)
+}, 1000);
+}
+var time_limit = "<%= @quiz.minutes %>";
+window.onload = function () {
+  sec  = parseInt(window.localStorage.getItem("seconds"))
+  min = parseInt(window.localStorage.getItem("minutes"))
+  console.log(sec);
+  if(parseInt(min*sec)){
+    var Minutes = (parseInt(min*60)+sec);
+  }else{
+    var Minutes = 60 * time_limit;
+  }
+    // var Minutes = 60 * 5;
+  display = document.querySelector('#time');
+  startTimer(Minutes, display);
+};
+  </script>
+
+  <div id="time"></div>
+</div>
 
 <section class="vh-100 gradient-custom">
   <div class="container py-5 h-50">
@@ -12,11 +52,12 @@
         <% else %>
           <% path = save_answer_user_quizzes_path%>
         <% end%>
-        <%= form_with url: path, method: :post do |form| %>
+        <%= form_with url: path, id: "quiz_form", method: :post do |form| %>
         <ol>
         <% @question.each do |question| %>
           <% if question.body.present? %>
             <%= form.hidden_field :page, value: params[:page]%>
+            <%= form.hidden_field :auto_save, value: false, id: "auto_save"%>
               <%= question.body %>
               <% question.options.each do |option| %>
                 <ul>
