@@ -6,12 +6,21 @@
           <div class="card-body p-5 text-center">
             <%= form_with model: @quiz do |form| %>
               <div>
+                <p>
                 <%= collection_select(:quiz, :category_id, Category.all, :id, :title) %>
+                </p>
                 <div class="form-outline mb-4">
                   <%= form.label :title %><br>
                   <%= form.text_field :title %>
                 </div>
                 <% @quiz.errors.full_messages_for(:title).each do |message| %>
+                  <div><%= message %></div>
+                <% end %>
+                <div class="form-outline mb-4">
+                  <%= form.label :enter_the_time_limit_in_minutes %><br>
+                  <%= form.number_field :minutes %>
+                </div>
+                <% @quiz.errors.full_messages_for(:minutes).each do |message| %>
                   <div><%= message %></div>
                 <% end %>
               </div>

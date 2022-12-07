@@ -5,9 +5,9 @@ class QuizzesController < ApplicationController
 
   def index
     if(params.has_key?(:category_name))
-      @quizzes = Quiz.where(category_name: params[:category_name]).paginate(page: params[:page], per_page: 4).order("created_at desc")
+      @quizzes = Quiz.where(category_name: params[:category_name]).paginate(page: params[:page], per_page: 5).order("created_at desc")
     else
-      @quizzes = Quiz.all.paginate(page: params[:page], per_page: 4).order("created_at desc")
+      @quizzes = Quiz.all.paginate(page: params[:page], per_page: 5).order("created_at desc")
     end
     @categories = Category.all
   end
@@ -64,7 +64,7 @@ class QuizzesController < ApplicationController
   end
 
   def quiz_params
-    params.require(:quiz).permit(:category_id, :category_name, :title)
+    params.require(:quiz).permit(:category_id, :category_name, :title, :minutes)
   end
 
   def set_category_name
