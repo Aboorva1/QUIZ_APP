@@ -1,39 +1,41 @@
 <div class="timer">Time Left            
   <script >
   function startTimer(duration, display) {
-var timer = duration, minutes, seconds;
-setInterval(function () {
-    minutes = parseInt(timer / 60, 10)
-    seconds = parseInt(timer % 60, 10);
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+      minutes = parseInt(timer / 60, 10)
+      seconds = parseInt(timer % 60, 10);
 
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-    seconds = seconds < 10 ? "0" + seconds : seconds;
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
 
-    display.textContent = minutes + " " + " " + seconds;
+      display.textContent = minutes + " " + " " + seconds;
 
-    if (--timer < 0) {
-      document.getElementById("auto_save").value = true;
-      document.getElementById("quiz_form").submit();
-    }
-  console.log(parseInt(seconds))
-  window.localStorage.setItem("seconds",seconds)
-  window.localStorage.setItem("minutes",minutes)
-}, 1000);
-}
-var time_limit = "<%= @quiz.minutes %>";
-window.onload = function () {
-  sec  = parseInt(window.localStorage.getItem("seconds"))
-  min = parseInt(window.localStorage.getItem("minutes"))
-  console.log(sec);
-  if(parseInt(min*sec)){
-    var Minutes = (parseInt(min*60)+sec);
-  }else{
-    var Minutes = 60 * time_limit;
+      if (--timer < 0) {
+        document.getElementById("auto_save").value = true;
+        document.getElementById("quiz_form").submit();
+      }
+    console.log(parseInt(seconds))
+    window.localStorage.setItem("seconds",seconds)
+    window.localStorage.setItem("minutes",minutes)
+    }, 1000);
   }
-    // var Minutes = 60 * 5;
-  display = document.querySelector('#time');
-  startTimer(Minutes, display);
-};
+
+  var time_limit = "<%= @quiz.minutes %>";
+  window.onload = function () {
+    sec  = parseInt(window.localStorage.getItem("seconds"))
+    min = parseInt(window.localStorage.getItem("minutes"))
+    if(min == 0 && sec != 0){
+      var Minutes = parseInt(sec);
+    } 
+    else if(parseInt(min*sec)){
+      var Minutes = (parseInt(min*60)+sec);
+    }else{
+      var Minutes = 60 * time_limit;
+    }
+    display = document.querySelector('#time');
+    startTimer(Minutes, display);
+  };
   </script>
 
   <div id="time"></div>
@@ -74,4 +76,5 @@ window.onload = function () {
         <% end %>
         </ol>
 <% end %>
+</section>
   
