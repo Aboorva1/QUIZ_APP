@@ -87,16 +87,20 @@ class UserQuizzesController < ApplicationController
   end
 
   def save_user_quiz(answers_count)
+    end_time = Time.now
     questions_count = Question.where(quiz_id: session[:quiz_id]).count
     question_scores = []
     UserAnswer.where(quiz_id: session[:quiz_id]).last(answers_count).each do |user_answer|
       question_scores << user_answer.score
     end
-    duration = (Time.now) - (session[:start_time].to_datetime)
+    duration = (end_time - (session[:start_time].to_datetime)).to_i
     @user_quiz = UserQuiz.new(
       quiz_id: session[:quiz_id],
       user_id: current_user.id,
-      score: (question_scores.sum) * 10
+      score: (question_scores.sum) * 10,
+      start_time: session[:start_time],
+      end_time: end_time,
+      quiz_time: duration
     )
     @user_quiz.save!
     redirect_to result_user_quizzes_path(:id => session[:quiz_id], :quiz_score => @user_quiz.score, :questions_count => questions_count, :answers_count =>answers_count)
