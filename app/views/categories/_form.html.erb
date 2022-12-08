@@ -6,17 +6,17 @@
           <div class="card-body p-5 text-center">
             <%= form_with model: @category do |form| %>
               <div>
-                <div class="form-outline mb-4">
-                  <b><%= form.label :title %><br></b>
-                  <%= form.text_field :title %>
+                <div class="form-outline mb-4 fs-3">
+                  <h4><%= form.label :title %>
+                  <%= form.text_field :title, :class => "form-control form-control-lg" %></h4>
                 </div>
+                <div class = "error">
                 <% @category.errors.full_messages_for(:title).each do |message| %>
                   <div><%= message %></div>
                 <% end %>
+                <div>
               </div>
-              <div>
-                <%= form.submit %>
-              </div>
+              <div class="text_center"><%= form.submit "Create category", class: "btn btn-secondary" %></div>
             <% end %>
           </div>
         </div>
