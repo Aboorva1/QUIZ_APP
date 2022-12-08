@@ -40,23 +40,25 @@ height: 100%;
 }
 
 .card{
-    width: 380px;
+    width: 500px;
     border-width: medium;
-    border-color: #991566;
+    margin-top: 20px;
   }
 
 .quiz{
     align-items: center;
     color: black;
-    border-radius: 20px;
-    padding: 50px 100px 200px 100px;
+    border-radius: 10px;
+    margin: 5px 5px 0px 50px;
+    padding: 50px 50px 50px 50px;
     font-family: 'Montserrat', sans-serif;
-    
-    max-width: 2000px;
+    background-color: rgb(207, 207, 207);
+    max-width: 1000px;
 }
 .quiz{
     font-size: 30px;
 }
+
 .question{
     width: 75%;
 }
@@ -109,10 +111,11 @@ height: 100%;
     text-align: center;
     }
 .table {
-        border-collapse: collapse;
-        border-spacing: 0;
-        width: 50%;
-        border: 1px solid #ddd;
+    margin-top: 30px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 50%;
+    border: 1px solid #ddd;
     }
 
 .error{
@@ -122,9 +125,7 @@ height: 100%;
     text-align: left;
     font-style: italic;
 }
-header{
-    background: #55d6aa;
-    }
+
     header::after {
     content: '';
     display: table;
@@ -194,7 +195,7 @@ text-transform: uppercase; font-size: 14px;
     margin: 0;
     width: 40%;
     padding: 0px 60px;
-    top: 27%;
+    top: 35%;
     left: 30%;
     position: absolute;
 }
@@ -263,4 +264,15 @@ text-transform: uppercase; font-size: 14px;
     font-weight: 400;
     font-size: 17px;
     user-select: none;
+}
+
+.info_box{
+    align-items: center;
+    color: black;
+    border-radius: 20px;
+    padding: 30px 300px 30px 300px;
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 10%;
+    margin-right: 10%;
+    max-width: 2000px;
 }
