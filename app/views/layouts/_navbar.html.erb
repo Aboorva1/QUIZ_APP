@@ -1,18 +1,18 @@
 <header>
-<nav class="navbar navbar-expand-md navbar-dark">
+<nav class="navbar navbar-expand-lg py-md-5 bg-info">
   <div class="container-fluid">
     <div class="navbar-header">
     <%= link_to quizzes_path do %>
       <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/a/aa/Guess_Quiz_Logo.png", height: 24, width: 25, :class=> "d-inline-block align-text-top" %>
-    Quiz App
+    <strong>Quiz App</strong>
     <% end%>
     </div>
   <% if user_signed_in? %> 
     <strong>
-      <li><%= link_to "Home", quizzes_path %></li> 
-      <li><%= link_to "Leaderboard", leader_board_index_path %></li>
+      <li class="nav-item py-md-2"><i class="fa fa-fw fa-home"></i><%= link_to "Home", quizzes_path %></li> 
+      <li class="nav-item py-md-2"><i class="bi bi-bar-chart-fill"></i><%= link_to "Leaderboard", leader_board_index_path %></li>
       <% if !current_user.is_admin? %>
-        <li><%= link_to "My Quiz", my_quiz_user_quizzes_path %></li> 
+        <li class="nav-item py-md-2"><%= link_to "My Quiz", my_quiz_user_quizzes_path %></li> 
       <%end%>
 
       <div class="right-nav">
@@ -26,7 +26,7 @@
         <% end %>
       <% end %>
 
-      <%= link_to 'Edit profile', edit_user_registration_path%> |
+      <%= link_to 'Edit profile', edit_user_registration_path %> |
       <%= link_to "Logout", destroy_user_session_path, method: :delete %>
     </strong> 
   <% end %>
