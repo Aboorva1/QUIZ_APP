@@ -1,6 +1,7 @@
 class QuizzesController < ApplicationController
 
   before_action :authenticate_user!
+  before_action :check_user, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_quiz, only: [:show, :edit, :update, :destroy]
 
   def index

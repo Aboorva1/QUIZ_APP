@@ -1,6 +1,8 @@
 class OptionsController < ApplicationController
 
+  before_action :authenticate_user!
   before_action :set_option, only: [:edit, :update, :destroy]  
+  before_action :check_user, only: [:edit, :update, :destroy]
 
   def edit
     

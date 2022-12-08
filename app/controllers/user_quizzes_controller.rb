@@ -1,5 +1,8 @@
 class UserQuizzesController < ApplicationController
+
+  before_action :authenticate_user!
   before_action :set_page, only: [:show]
+  before_action :check_admin
 
   def show
     questions_per_page = 1
@@ -109,4 +112,11 @@ class UserQuizzesController < ApplicationController
   def set_page
     @page = (params[:page] || 0).to_i
   end
+
+  def check_admin
+    if current_user.is_admin?
+      redirect_back(fallback_location: root_path)
+    end
+  end
+
 end

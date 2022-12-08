@@ -1,6 +1,8 @@
 class CategoriesController < ApplicationController
   
+  before_action :authenticate_user!
   before_action :set_category, only: [:edit, :update, :destroy]
+  before_action :check_user, only: [:new, :create, :edit, :update, :destroy]
 
   def new
     @category = Category.new
