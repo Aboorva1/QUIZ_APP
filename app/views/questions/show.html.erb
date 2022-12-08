@@ -1,6 +1,6 @@
 <div class="page-header">
   <div class="span10">
-    <h1><%= @question.body %></h1>
+    <h3 class = "text-center"><%= @question.body %></h3>
     <% if @question.options.present? %>
       <%= render partial: "options/list_options", locals: {question_options: @question.options} %>
     <% end %>
