@@ -12,15 +12,15 @@
 <table class="table table-borderless">
 <thead>
 <tr>
-  <th class="text-center">Quizzes</th>
+  <h3 class="text-center">Quizzes</h3>
 </tr>
 </thead>
 <tbody>
   <% @quizzes.each do |quiz| %>
     <tr>
-      <td class="pt-2">
+      <td class="pt-1">
         <ul class="list-group list-group-flush">
-          <p><%= link_to quiz.title, quiz %></p>
+          <p><%= link_to quiz.title, quiz, class: "btn btn-light" %></p>
           </ul>
       </td>       
     </tr>

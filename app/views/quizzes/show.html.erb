@@ -1,9 +1,9 @@
 
 <div class="text-center">
-  <div class="fs-1"><%="Title: "%><%= @quiz.title %>
+  <div class="fs-1"><%="Title "%><%= @quiz.title %>
   <% if current_user.is_admin? %>
-    <%= link_to "✏", edit_quiz_path(@quiz), class: "btn btn-outline-warning" %>
-    <%= link_to "❎", quiz_path(@quiz), class: "btn btn-outline-secondary",
+    <%= link_to "✏", edit_quiz_path(@quiz), class: "btn btn-outline-light" %>
+    <%= link_to "❎", quiz_path(@quiz), class: "btn btn-outline-light",
       method: :delete,
       data: { confirm: "Are you sure?" } %>
   <% end %>
@@ -17,13 +17,13 @@
   <section class="vh-100">
     <div class="container-fluid h-custom">
       <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-md-9 col-lg-6 col-xl-4">
+        <div class="col-md-9 col-lg-6">
           <%= render 'questions/form' %>
         </div>
         <% if @quiz.questions.count != 0 %>
-          <div class="col-md-8 col-lg-2 b-4 col-xl-5 offset-xl-1">
+          <div class="col-md-8 col-xl-4">
             <div class="align-items-center justify-content-center justify-content-lg-start">
-              <p class="fs-3"><strong>Added questions</strong></p>
+              <h1><div class="fs-3 pt-xl-5 pl-xl-2">Added questions</div></h1>
             </div>
             <%= render @quiz.questions %> 
           </div>
@@ -34,6 +34,15 @@
 <% else %>
   <% if @quiz.questions.count != 0 %>
     <%#= render partial: "user_quizzes/user_quiz_page", :locals => {quiz_questions: @quiz.questions} %> 
+    <div class="info_box">
+    <div class="alert alert-info" role="alert">
+      <h4 class="alert-heading">Rules of the quiz</h4>
+            <div class="info">1. Try to finish the quiz within time limit</div>
+            <div class="info">2. Quiz will get submitted once time goes off.</div>
+            <div class="info">3. You'll get points on the basis of your correct answers.</div>
+        </div>
+        </div>
+    </div>
     <p class = "text-center"><%= link_to "Start Quiz", user_quiz_path, data: { turbolinks: false }, class: "btn btn-primary"%></p>
   <% else %>
     <%= 'Questions yet to be added' %>
