@@ -1,15 +1,15 @@
-<div class="nav flex-column nav-pills"  aria-orientation="vertical">
+<div class="nav flex-column nav-pills text-center fw-bold text-uppercase fst-italic"  aria-orientation="vertical">
   <%= link_to root_path, class: "nav-link mb-3 shadow", role: "tab" do %>
-    <span class="font-weight-bold small text-uppercase">All</p></span>
+    <span>All categories</p></span>
   <% end %>
   <% @categories.each do |category| %>
     <% if params[:category_name] == category.title %>
       <%= link_to quizzes_path(category_name: category.title), class: "nav-link mb-3 shadow active", role: "tab" do %>
-        <span class="font-weight-bold small text-uppercase text-center"><%= category.title %></p></span>
+        <span><%= category.title %></p></span>
       <% end %>
     <% else %>
       <%= link_to quizzes_path(category_name: category.title), class: "nav-link mb-3 shadow", role: "tab" do %>
-        <span class="font-weight-bold small text-uppercase text-center"><%= category.title %></p></span>
+        <span><%= category.title %></p></span>
       <% end %>
     <% end %>
     <% if current_user.is_admin? %>

@@ -1,6 +1,6 @@
 
 <div class="text-center">
-  <div class="fs-1"><%="Title "%><%= @quiz.title %>
+  <div class="fs-1 fst-italic"><%="Title "%><%= @quiz.title %>
   <% if current_user.is_admin? %>
     <%= link_to "✏", edit_quiz_path(@quiz), class: "btn btn-outline-light" %>
     <%= link_to "❎", quiz_path(@quiz), class: "btn btn-outline-light",
@@ -15,19 +15,19 @@
 </div>
 <% if current_user.is_admin? %>
   <section class="vh-100">
-    <div class="container-fluid h-custom">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-md-9 col-lg-6">
+    <div class="container">
+      <div class="row">
+        <div class="col">
           <%= render 'questions/form' %>
         </div>
         <% if @quiz.questions.count != 0 %>
-          <div class="col-md-8 col-xl-3">
+          <div class="col">
             <div class="align-items-center justify-content-center justify-content-lg-start">
-              <h1><div class="fs-3 pt-xl-5 pl-xl-2">Added questions</div></h1>
+              <h1><div class="fs-3 pt-xl-5 pl-xl-2 fst-italic">Added questions</div></h1>
             </div>
             <div class = "question_table">
-            <table class="table table-striped table-bordered table-condensed">
-            
+            <table class="table table-borderless table-condensed">
+  
             <tr>
               <th class="text-center">Question</th>
               <th class="text-center">Actions</th>

@@ -2,14 +2,14 @@
   <div class="container py-5 h-50">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-0 col-xl-5">
-        <div class="card" style="border-radius: 1rem;">
+        <div class="card border-dark" style="border-radius: 1rem;">
           <div class="card-body p-5 text-center">
             <%= form_with model: @quiz do |form| %>
               <div>
-                <p>
+                <div class="form-outline mb-4">
                 <b><%= form.label :Category %>
                 <%= collection_select(:quiz, :category_id, Category.all, :id, :title) %>
-                </p>
+                </div>
                 <div class="form-outline mb-4">
                   <%= form.label :title %><br>
                   <%= form.text_field :title, :class => "form-control form-control-lg" %>
@@ -21,7 +21,7 @@
                 </div>
                 <div class="form-outline mb-4">
                   <%= form.label :enter_the_time_limit_in_minutes %><br>
-                  <%= form.number_field :minutes %>
+                  <%= form.number_field :minutes, :class => "form-control form-control-lg" %>
                 </div>
                 <div class = "error">
                 <% @quiz.errors.full_messages_for(:minutes).each do |message| %>

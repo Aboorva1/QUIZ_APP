@@ -1,9 +1,9 @@
 
   <section class="vh-100 gradient-custom">
-  <h1><div class="fs-3 pt-xl-5 pl-xl-2">Add question</div></h1>
-    <div class="row h-50">
-      <div class="col-20">
-        <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+  <h1><div class="fs-3 pt-xl-5 pl-xl-2 fst-italic">Add question</div></h1>
+    <div class="row">
+      <div class="col">
+        <div class="card border-dark shadow-2-strong card-registration" style="border-radius: 20px;">
           <div class="card-body">
             <%= form_with(model: [@quiz, @question]) do |form| %>
             <%= form.hidden_field :quiz_id, value: @quiz.id%>

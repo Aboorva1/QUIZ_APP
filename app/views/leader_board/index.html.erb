@@ -4,7 +4,7 @@
 <h1 class = 'text-center'>Leaderboard</h1>
 <h2 class = 'text-center'>Top 10 scores</h2>
 <p>
-<table class="table table-striped table-bordered table-condensed">
+<table class="table table-striped table-bordered align-middle table-condensed">
 <thead class="table-dark">
 <tr>
   <th class="text-center">Name</th>
@@ -13,7 +13,7 @@
   <th class="text-center">Date</th>
 </tr>
 </thead>
-<tbody>
+<tbody class="text-center">
   <% @user_quizzes.zip(@images) do |user_quiz, image| %>
     <tr class="bg-blue">
       <td class="pt-2">
@@ -29,8 +29,7 @@
       <td><%= user_quiz.created_at.strftime("%d %b %Y") %></td>      
     </tr>
     <tr id="spacing-row">
-                    <td></td>
-                </tr>
+    </tr>
   <% end %>
 </tbody>
 </table>
