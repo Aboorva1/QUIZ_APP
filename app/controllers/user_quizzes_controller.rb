@@ -4,6 +4,10 @@ class UserQuizzesController < ApplicationController
   before_action :set_page, only: [:show]
   before_action :check_admin
 
+  def index
+    @user_answers = UserAnswer.last(session[:answers_count])
+  end
+
   def show
     questions_per_page = 1
     if @page == 0
@@ -90,6 +94,7 @@ class UserQuizzesController < ApplicationController
   end
 
   def save_user_quiz(answers_count)
+    session[:answers_count] = answers_count
     end_time = Time.now
     questions_count = Question.where(quiz_id: session[:quiz_id]).count
     question_scores = []

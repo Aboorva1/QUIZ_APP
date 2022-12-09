@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row d-flex justify-content-center align-items-center">
+    <h2 class="text-center fst-italic">Your Answers</h2>
+    <% @user_answers.each do |user_answer| %>
+      <% your_answer = user_answer.option.choice %>
+      <% correct_answer = user_answer.question.options.find_by(is_correct_answer: "true").choice %>
+      <% options = user_answer.question.options %>      
+      <div class="card w-75 border-dark mb-3 shadow fs-5">
+        <div class="card-body"> 
+          <h4><%="Question: "%><%= user_answer.question.body %></h4>
+          <%="Options: "%>
+          <% options.each do |option| %>
+            <li><%= option.choice %></li>
+          <% end %>
+          <% if your_answer == correct_answer %>
+            <div class="text-success text-center"><%="Your Answer is "%><b><%= your_answer%></b></div>
+          <% else %>
+            <div class="text-danger text-center"><%="Your Answer is "%><b><%= your_answer%></b></div>
+            <div class="text-success text-center"><%= "Correct Answer is "%><b><%= correct_answer%></b></div>
+          <% end %> 
+        </div>
+      </div>
+      
+    <%end%>
+  </div>
+</div>

@@ -1,5 +1,4 @@
 <section class="vh-100 gradient-custom">
-  <div class="container py-5 h-50">
   <div class="timer">Time Left          
   <script >
   function clear_localstorage(){
@@ -46,13 +45,12 @@
 
   <div id="time"></div>
 </div>
-
+  <div class="container py-5 h-50">
     <div class = "error">
     <%= flash[:error]%>
     </div>
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class = "tables">
-        <div class = "quiz">
+    <div class="row border-dark d-flex justify-content-center align-items-center h-100">
+      <div class = "quiz">
         <% if params[:page].to_i == @question_count-1 %>
           <% path = submit_quiz_user_quizzes_path %>
         <% else %>
@@ -76,9 +74,10 @@
         <% if params[:page].to_i == @question_count - 1 %>
           <%= form.submit "Submit quiz", class: "btn btn-primary", :onClick => "clear_localstorage()"%>
         <% else %>
-          <%= form.submit "Next", class: "btn btn-primary" %>
+          <%= form.submit "Next", class: "btn btn-success" %>
         <% end %>
         </ol>
+      </div>
 <% end %>
 </section>
   
