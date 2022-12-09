@@ -17,7 +17,6 @@ class Option < ApplicationRecord
   end
 
   def correct_answer_count
-
     false_count = true_count = 0
     if self.is_correct_answer == false
       false_count = 1
