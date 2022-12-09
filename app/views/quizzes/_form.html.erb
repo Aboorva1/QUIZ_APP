@@ -30,10 +30,13 @@
                 </div>
               </div>
               <div>
-                <%= form.submit %>
+                <%= form.submit "Create quiz", class: "btn btn-secondary" %>
               </div>
             <% end %>
           </div>
+          <p class="text-center">
+            <%= link_to 'Back', :back, class: "btn btn-xs btn-info" %>
+          </p>
         </div>
       </div>
     </div>

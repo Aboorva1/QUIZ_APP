@@ -21,11 +21,21 @@
           <%= render 'questions/form' %>
         </div>
         <% if @quiz.questions.count != 0 %>
-          <div class="col-md-8 col-xl-4">
+          <div class="col-md-8 col-xl-3">
             <div class="align-items-center justify-content-center justify-content-lg-start">
               <h1><div class="fs-3 pt-xl-5 pl-xl-2">Added questions</div></h1>
             </div>
-            <%= render @quiz.questions %> 
+            <div class = "question_table">
+            <table class="table table-striped table-bordered table-condensed">
+            
+            <tr>
+              <th class="text-center">Question</th>
+              <th class="text-center">Actions</th>
+            </tr>
+            
+            <tbody>
+              <%= render @quiz.questions %> 
+            </tbody>
           </div>
         <% end %>
       </div>

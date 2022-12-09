@@ -19,13 +19,16 @@
               </div>
               <p class="form-outline mb-4 fs-4">
                 <h5><%= form.label :correct_option %>
-                <%= form.radio_button :is_correct_answer, checked: true, :class => "form-control form-control-lg"%></h5>
+                <%= form.radio_button :is_correct_answer, checked: true%></h5>
               </p>
               <div>
                 <%= form.submit "Save Option", class: "btn btn-secondary" %>
               </div>
             <% end %>
           </div>
+          <p class="text-center">
+            <%= link_to 'Back', :back, class: "btn btn-xs btn-info" %>
+          </p>
         </div>
       </div>
     </div>

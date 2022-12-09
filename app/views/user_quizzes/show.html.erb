@@ -1,5 +1,11 @@
-<div class="timer">Time Left            
+<section class="vh-100 gradient-custom">
+  <div class="container py-5 h-50">
+  <div class="timer">Time Left          
   <script >
+  function clear_localstorage(){
+    alert("called");
+    localStorage.clear();
+  }
   function startTimer(duration, display) {
     var timer = duration, minutes, seconds;
     setInterval(function () {
@@ -13,6 +19,7 @@
 
       if (--timer < 0) {
         document.getElementById("auto_save").value = true;
+        localStorage.clear();
         document.getElementById("quiz_form").submit();
       }
     window.localStorage.setItem("seconds",seconds)
@@ -40,8 +47,6 @@
   <div id="time"></div>
 </div>
 
-<section class="vh-100 gradient-custom">
-  <div class="container py-5 h-50">
     <div class = "error">
     <%= flash[:error]%>
     </div>
@@ -69,7 +74,7 @@
           <% end %>
         <% end %>
         <% if params[:page].to_i == @question_count - 1 %>
-          <%= form.submit "Submit quiz", class: "btn btn-primary" %>
+          <%= form.submit "Submit quiz", class: "btn btn-primary", :onClick => "clear_localstorage()"%>
         <% else %>
           <%= form.submit "Next", class: "btn btn-primary" %>
         <% end %>
