@@ -39,6 +39,10 @@ height: 100%;
 }
 }
 
+.navbar-nav .nav-link{
+    color: white;
+    font-weight: 500;
+}
 .card{
     width: 500px;
     border-width: medium;
@@ -131,30 +135,7 @@ height: 100%;
     display: table;
     clear: both;
     }
-     
-.right-nav {
-    float: right;
-}
-.left-nav{
-    float: left;
-}    
-nav {
-float: center;
-}
-nav ul {
-margin: 0;
-padding: 0;
-list-style: none;
-}
-nav li { display: inline-block; 
-    margin-left: 70px;
-    padding-top: 35px;
-}
-nav a {
-color: #444;
-text-decoration: none;
-text-transform: uppercase; font-size: 14px;
-}
+
 .container {
     width:1000px;
     margin:auto;
@@ -195,7 +176,7 @@ text-transform: uppercase; font-size: 14px;
     margin: 0;
     width: 40%;
     padding: 0px 60px;
-    top: 35%;
+    top: 20%;
     left: 30%;
     position: absolute;
 }
@@ -258,6 +239,7 @@ text-transform: uppercase; font-size: 14px;
   align-items: center;
   justify-content: space-between;
   width: 145px;
+  float: right;
 }
 
 .time_left_txt{
@@ -275,4 +257,11 @@ text-transform: uppercase; font-size: 14px;
     margin-left: 10%;
     margin-right: 10%;
     max-width: 2000px;
+}
+
+.question_table{
+    margin-top: 30px;    
+    border-spacing: 0;
+    width: 120%;
+    border: 1px solid #ddd;
 }
