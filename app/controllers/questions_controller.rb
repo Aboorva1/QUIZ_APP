@@ -30,9 +30,9 @@ class QuestionsController < ApplicationController
 
   def create      
     @quiz = Quiz.find(params[:quiz_id])
-    @question = Question.create(question_params)
     correct_index = params[:question][:options_attributes][:is_correct_answer]
     if correct_index.present?
+      @question = Question.create(question_params)
       correct_answer = @question.options[correct_index.to_i]
       correct_answer.update(:is_correct_answer => true)
       if !@question.save
