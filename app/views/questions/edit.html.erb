@@ -5,18 +5,20 @@
   <div class="container py-5 h-50">
     <div class="row d-flex justify-content-center align-items-center h-100">
     <div class="col-5 col-md-8 col-lg-2 col-xl-5">
+      <% if @question.errors.any? %>
+        <div class="alert alert-danger">
+          <% @question.errors.each do |attr, msg| %>
+            <ol><%= "#{attr.capitalize} #{msg}" if @question.errors[attr].first == msg %></ol>
+          <% end %>
+        </div>
+      <% end %> 
         <div class="card border-dark" style="border-radius: 1rem;">
-          <div class="card-body p-5 text-center">
+          <div class="card-body p-5">
             <%= form_with(model: [@quiz, @question]) do |form| %>
               <%= form.hidden_field :quiz_id, value: @quiz.id%>
               <div  class="form-outline mb-3">
                 <h4><%= form.label :Question %></h4><br>
                 <%= form.text_field :body,:class => "form-control form-control-lg" %>
-              </div>
-              <div class = "error">
-                <% @question.errors.full_messages_for(:body).each do |message| %>
-                  <div><%= message %></div>
-                <% end %>
               </div>
               <div>
                 <div class="text_center"><%= form.submit "Update question", class: "btn btn-secondary" %></div>

@@ -2,31 +2,29 @@
   <div class="container py-5 h-50">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-0 col-xl-5">
-        <div class="card border-dark" style="border-radius: 1rem;">
-          <div class="card-body p-5 text-center">
+        <% if @quiz.errors.any? %>
+            <div class="alert alert-danger">
+            <% @quiz.errors.each do |attr, msg| %>
+              <ol><%= "#{attr.capitalize} #{msg}" if @quiz.errors[attr].first == msg %></ol>
+            <% end %>
+          </div>
+        <% end %> 
+        <div class="card" style="border-radius: 1rem;">
+          <div class="card-body p-5">
             <%= form_with model: @quiz do |form| %>
               <div>
-                <div class="form-outline mb-4">
+                <div class="mb-3">
                 <b><%= form.label :Category %>
-                <%= collection_select(:quiz, :category_id, Category.all, :id, :title) %>
+                <%= collection_select :quiz, :category_id, Category.all, :id, :title ,{ include_blank: false }, { class: 'form-control form-control-lg' } %>
                 </div>
                 <div class="form-outline mb-4">
                   <%= form.label :title %><br>
                   <%= form.text_field :title, :class => "form-control form-control-lg" %>
                 </div>
-                <div class = "error">
-                <% @quiz.errors.full_messages_for(:title).each do |message| %>
-                  <div><%= message %></div>
-                <% end %>
-                </div>
+                
                 <div class="form-outline mb-4">
                   <%= form.label :enter_the_time_limit_in_minutes %><br>
                   <%= form.number_field :minutes, :class => "form-control form-control-lg" %>
-                </div>
-                <div class = "error">
-                <% @quiz.errors.full_messages_for(:minutes).each do |message| %>
-                  <div><%= message %></div>
-                <% end %>
                 </div>
               </div>
               <div>
@@ -42,3 +40,4 @@
     </div>
   </div>
 </section>
+
