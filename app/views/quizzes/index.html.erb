@@ -11,20 +11,20 @@
 <div class = "panel">
   <div class="card" style="border-radius: 1rem;">
     <div class="card-body p-5">
-    <h3 class="text-center text-dark fst-italic mb-3">Quizzes</h3>
-    <% @quizzes.each do |quiz| %>
-      <div class="nav flex-column nav-pills text-center fs-5"  aria-orientation="vertical">
-        <p><%= link_to quiz.title, quiz, class: "nav-link border border-dark text-dark" %></p>
-      </div>
-    <% end %>
-    <% if current_user.is_admin? %>
-      <p class = "text-center"><%= link_to "New Quiz", new_quiz_path, :class=>"btn btn-info"%></p>
-    <% end %>
-      </div>
+      <h3 class="text-center text-dark fst-italic mb-3">Quizzes</h3>
+      <% @quizzes.each do |quiz| %>
+        <div class="nav flex-column nav-pills text-center fs-5"  aria-orientation="vertical">
+          <p><%= link_to quiz.title, quiz, class: "nav-link border border-dark text-dark" %></p>
+        </div>
+      <% end %>
+      <% if current_user.is_admin? %>
+        <p class = "text-center"><%= link_to "New Quiz", new_quiz_path, :class=>"btn btn-info"%></p>
+      <% end %>
     </div>
-    <div class ='pagination'>
-  <div class = "text-center">
-  <%= will_paginate(@quizzes,:previous_label => "&laquo;", :next_label => "&raquo;",:class=>"small-font",:outer_window => 5,:inner_window => 5) %></li>
   </div>
-</div>
+  <div class ='pagination'>
+    <div class = "text-center">
+      <%= will_paginate(@quizzes,:previous_label => "&laquo;", :next_label => "&raquo;",:class=>"small-font",:outer_window => 5,:inner_window => 5) %></li>
+    </div>
+  </div>
 </div>
