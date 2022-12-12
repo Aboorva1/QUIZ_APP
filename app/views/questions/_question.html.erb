@@ -1,7 +1,7 @@
 <% if current_user.is_admin? %>
   <% if question.body.present? %>
   <tr>   
-    <td class="col-3"><%= link_to question.body, quiz_question_path(@quiz, question), class: "btn btn-light" %></td>
+    <td class="col-3"><%= link_to question.body, quiz_question_path(@quiz, question), class: "nav-link mb-3" %></td>
     <td class="col-1"><%= link_to "✏", edit_quiz_question_path(@quiz, question),class: "btn btn-outline-light" %>
     <%= link_to '❎', [@question.quiz, question],
               method: :delete,

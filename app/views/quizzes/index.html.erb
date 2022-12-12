@@ -9,30 +9,22 @@
 </div>
 
 <div class = "panel">
-<table class="table table-borderless">
-<thead>
-<tr>
-  <h3 class="text-center text-primary fst-italic">Quizzes</h3>
-</tr>
-</thead>
-<tbody class="text-center">
-  <% @quizzes.each do |quiz| %>
-    <tr>
-      <td class="pt-1">
-        <ul class="list-group">
-          <p><%= link_to quiz.title, quiz, class: "btn btn-light" %></p>
-          </ul>
-      </td>       
-    </tr>
-  <% end %>
-</tbody>
-</table>
-<% if current_user.is_admin? %>
-  <p class = "text-center"><%= link_to "New Quiz", new_quiz_path, :class=>"btn btn-info"%></p>
-<% end %>
-
-<div class ='pagination'>
+  <div class="card" style="border-radius: 1rem;">
+    <div class="card-body p-5">
+    <h3 class="text-center text-dark fst-italic mb-3">Quizzes</h3>
+    <% @quizzes.each do |quiz| %>
+      <div class="nav flex-column nav-pills text-center fs-5"  aria-orientation="vertical">
+        <p><%= link_to quiz.title, quiz, class: "nav-link border border-dark text-dark" %></p>
+      </div>
+    <% end %>
+    <% if current_user.is_admin? %>
+      <p class = "text-center"><%= link_to "New Quiz", new_quiz_path, :class=>"btn btn-info"%></p>
+    <% end %>
+      </div>
+    </div>
+    <div class ='pagination'>
   <div class = "text-center">
   <%= will_paginate(@quizzes,:previous_label => "&laquo;", :next_label => "&raquo;",:class=>"small-font",:outer_window => 5,:inner_window => 5) %></li>
   </div>
+</div>
 </div>

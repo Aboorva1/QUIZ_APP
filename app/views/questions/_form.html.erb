@@ -3,22 +3,23 @@
   <h1><div class="fs-3 pt-xl-5 pl-xl-2 fst-italic">Add question</div></h1>
     <div class="row">
       <div class="col">
-        <div class="card border-dark shadow-2-strong card-registration" style="border-radius: 20px;">
+        <div class="card shadow-2-strong card-registration" style="border-radius: 20px;">
           <div class="card-body">
             <%= form_with(model: [@quiz, @question]) do |form| %>
             <%= form.hidden_field :quiz_id, value: @quiz.id%>
             <p>
-            <div>
-              <b><%= form.label :Question %></b><br>
-              <%= form.text_field :body, :class => "form-control form-control-lg"  %>
+            <div class="form-outline mb-4">
+              <b><%= form.label :Question %></b>
+              <%= form.text_field :body, :class => "form-control form-control-lg"%>
             </div>
             <%= form.fields_for :options, @options do |option_form| %>
-            <p>
-            <b><%= option_form.label :choice %></b><br>
-            <%= option_form.text_field :choice %>
-            <b><%= option_form.label :correct_option %></b>
+            <div class="form-outline mb-4">
+            <b><%= option_form.label :choice %></b>
+            <%= option_form.text_field :choice, :class => "form-control form-control-lg" %>
             <%= radio_button_tag "question[options_attributes][is_correct_answer]", option_form.index, option_form.object.is_correct_answer %>
-            </p>
+            <b><%= option_form.label :correct_option %></b>
+            </div>
+            
             <% end %>
             <%= form.submit "Create question", class: "btn btn-secondary" %>
             </p>
