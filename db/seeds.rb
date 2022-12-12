@@ -40,7 +40,8 @@ end
     quiz = Quiz.create!(
       category_id: category.id,
       category_name: category.title,
-      title: Faker::Lorem.sentence(word_count: 2)
+      title: Faker::Lorem.sentence(word_count: 2),
+      minutes: 1
     )
 
     5.times do
