@@ -17,15 +17,15 @@ class OptionsController < ApplicationController
     end
   end
 
-  def destroy
-    @option.destroy
-    if @option.destroyed?
-      flash[:success] = 'Option is destroyed'
-    else
-      flash[:error] = 'Failed to destroy'
-    end
-    redirect_to quiz_question_path(@quiz, @question)
-  end
+  # def destroy
+  #   @option.destroy
+  #   if @option.destroyed?
+  #     flash[:success] = 'Option is destroyed'
+  #   else
+  #     flash[:error] = 'Failed to destroy'
+  #   end
+  #   redirect_to quiz_question_path(@quiz, @question)
+  # end
 
 
   private
