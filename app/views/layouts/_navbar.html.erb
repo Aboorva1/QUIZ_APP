@@ -1,19 +1,33 @@
 <header>
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-expand-md navbar-dark">
   <div class="container-fluid">
     <div class="navbar-header">
-    <a class="navbar-brand" href="#">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Guess_Quiz_Logo.png" alt="" width="25" height="24" class= "d-inline-block align-text-top">
-      Quiz App
-    </a>
+    <%= link_to quizzes_path do %>
+      <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/a/aa/Guess_Quiz_Logo.png", height: 24, width: 25, :class=> "d-inline-block align-text-top" %>
+    Quiz App
+    <% end%>
     </div>
   <% if user_signed_in? %> 
+    <strong>
     <strong>
       <li><%= link_to "Home", quizzes_path %></li> 
       <li><%= link_to "Leaderboard", leader_board_index_path %></li>
       <% if !current_user.is_admin? %>
         <li><%= link_to "My Quiz", my_quiz_user_quizzes_path %></li> 
+      <% if !current_user.is_admin? %>
+        <li><%= link_to "My Quiz", my_quiz_user_quizzes_path %></li> 
       <%end%>
+
+      <div class="right-nav">
+      <%if current_user.image.attached?%>
+        <%= image_tag(current_user.image,:class=> "img") %>
+      <%else%> 
+        <% if current_user.is_admin? %>
+          <img class= "img" src ="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe-OwJLExW6kXjgbYw_PfokaYVSPFlE8_Idg&usqp=CAU">
+        <% else %>
+          <img class= "img" src ="https://pic.onlinewebfonts.com/svg/img_162044.png">
+        <% end %>
+      <% end %>
 
       <div class="right-nav">
       <%if current_user.image.attached?%>
@@ -32,4 +46,9 @@
   <% end %>
   </div>
 </nav>
+    </strong> 
+  <% end %>
+  </div>
+</nav>
 </header>
+

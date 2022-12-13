@@ -13,6 +13,7 @@
 */
 
 
+
  
 .index{
     text-align: center;
@@ -47,12 +48,11 @@ height: 100%;
 
 .quiz{
     align-items: center;
-    background-color: rgb(209, 135, 238);
-    color: white;
+    color: black;
     border-radius: 20px;
-    padding: 50px;
+    padding: 50px 100px 200px 100px;
     font-family: 'Montserrat', sans-serif;
-    text-shadow: 2px 2px #991566;
+    
     max-width: 2000px;
 }
 .quiz{
@@ -186,12 +186,39 @@ text-transform: uppercase; font-size: 14px;
   -moz-border-radius: 100px;
 }
 
+.img-circular{
+  margin-left: 600px;
+  width: 150px;
+  height: 50px;
+  background-size: cover;
+  display: block;
+  border-radius: 500px;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  position: absolute;
+  top: 5px;
+  left: 20px;    
+}
+  
+.img{
+  width: 50px;
+  height: 50px;
+  border-radius: 100px;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+}
+
 .tables{
     margin: 0;
     padding: 0px 60px;
 }
 
 .panel{
+    margin: 0;
+    width: 40%;
+    padding: 0px 60px;
+    top: 27%;
+    left: 30%;
     margin: 0;
     width: 40%;
     padding: 0px 60px;
@@ -209,4 +236,42 @@ text-transform: uppercase; font-size: 14px;
   height: 10px
 }
 
+.pagination {
+    background: white;
+    cursor: default;
+    
+  }
+  .pagination a, .pagination span, .pagination em {
+    padding: 0.2em 0.5em;
+    display: block;
+    float: left;
+    margin-right: 1px; 
+  }
+  .pagination .disabled {
+    color: #999999;
+    border: 1px solid #dddddd; 
+  }
+  .pagination .current {
+    font-style: normal;
+    font-weight: bold;
+    background: #21a3a3;
+    color: white;
+    border: 1px solid #0aa1a1;
+   }
+  .pagination a {
+    text-decoration: none;
+    color: #105cb6;
+    border: 1px solid #9aafe5;
+   }
+  
+  .pagination:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden; 
+  }
+  * html .pagination {
+    height: 1%; }
+  
 

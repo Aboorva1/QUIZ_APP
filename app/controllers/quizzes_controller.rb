@@ -5,9 +5,9 @@ class QuizzesController < ApplicationController
 
   def index
     if(params.has_key?(:category_name))
-      @quizzes = Quiz.where(category_name: params[:category_name]).order("created_at desc")
+      @quizzes = Quiz.where(category_name: params[:category_name]).paginate(page: params[:page], per_page: 4).order("created_at desc")
     else
-      @quizzes = Quiz.all.order("created_at desc")
+      @quizzes = Quiz.all.paginate(page: params[:page], per_page: 4).order("created_at desc")
     end
     @categories = Category.all
   end

@@ -4,8 +4,8 @@ class Option < ApplicationRecord
 
   validates :choice, presence: true
 
-  validate :options_count
-  validate :correct_answer_count
+  validate :options_count, on: :create
+  validate :correct_answer_count, on: :create
 
   private 
 
@@ -17,6 +17,7 @@ class Option < ApplicationRecord
   end
 
   def correct_answer_count
+
     false_count = true_count = 0
     if self.is_correct_answer == false
       false_count = 1

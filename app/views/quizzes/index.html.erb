@@ -3,11 +3,23 @@
   <div class="col-md-2 p-0">
     <%= render 'category_panel' %>
     <% if current_user.is_admin? %>
-      <%= link_to "New category", new_category_path, :class=>"btn btn-info" %>  
+      <p class = "text-center"><%= link_to "New category", new_category_path, :class=>"btn btn-info" %> </p> 
     <% end %>
   </div>
 </div>
 
+<div class = "panel">
+<table class="table table-borderless">
+<thead>
+<tr>
+  <th class="text-center">Quizzes</th>
+</tr>
+</thead>
+<tbody>
+  <% @quizzes.each do |quiz| %>
+    <tr>
+      <td class="pt-2">
+        <ul class="list-group list-group-flush">
 <div class = "panel">
 <table class="table table-borderless">
 <thead>
@@ -28,6 +40,11 @@
 </tbody>
 </table>
 <% if current_user.is_admin? %>
-  <%= link_to "New Quiz", new_quiz_path, :class=>"btn btn-info" %> 
+  <p class = "text-center"><%= link_to "New Quiz", new_quiz_path, :class=>"btn btn-info"%></p>
 <% end %>
 
+<div class ='pagination'>
+  <div class = "text-center">
+    <%= will_paginate(@quizzes,:previous_label => "&laquo;", :next_label => "&raquo;",:class=>"small-font",:outer_window => 5,:inner_window => 5) %></li>
+  </div>
+</div>

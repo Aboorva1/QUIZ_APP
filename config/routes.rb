@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  post 'user_quizzes/user_quiz_page'
   devise_for :users, controllers: { registrations: "registrations" }
   
   root "quizzes#index"
@@ -16,6 +15,9 @@ Rails.application.routes.draw do
     collection do
       get 'result'
       get 'my_quiz'
+      post 'user_quiz_page'
+      post 'save_answer'
+      post 'submit_quiz'
     end
   end  
   
