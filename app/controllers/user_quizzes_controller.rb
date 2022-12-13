@@ -5,6 +5,7 @@ class UserQuizzesController < ApplicationController
   before_action :check_admin
 
   def index
+    @questions = Question.where(quiz_id: session[:quiz_id]) 
     @user_answers = UserAnswer.last(session[:answers_count])
   end
 
