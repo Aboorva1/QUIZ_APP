@@ -1,15 +1,18 @@
 <div class="container">
   <div class="row d-flex justify-content-center align-items-center">
     <h2 class="text-center fst-italic">Your Answers</h2>
-    <% @user_answers.each do |user_answer| %>
+    <% @questions.zip(@user_answers) do |question, user_answer| %>
+    <% if user_answer.present? %>
       <% your_answer = user_answer.option.choice %>
-      <% correct_answer = user_answer.question.options.find_by(is_correct_answer: "true").choice %>
-      <% options = user_answer.question.options %>      
+    <% else %>
+      <% your_answer = "-" %>
+    <% end %>
+      <% correct_answer = question.options.find_by(is_correct_answer: "true").choice %>     
       <div class="card w-75 border-dark mb-3 shadow fs-5">
         <div class="card-body"> 
-          <h4><%="Question: "%><%= user_answer.question.body %></h4>
+          <h4><%="Question: "%><%= question.body %></h4>
           <%="Options: "%>
-          <% options.each do |option| %>
+          <% question.options.each do |option| %>
             <li><%= option.choice %></li>
           <% end %>
           <% if your_answer == correct_answer %>
