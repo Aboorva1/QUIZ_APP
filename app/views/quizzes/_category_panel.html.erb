@@ -1,5 +1,5 @@
-<div class="nav flex-column nav-pills text-center fw-bold text-uppercase fst-italic"  aria-orientation="vertical">
-  <%= link_to root_path, class: "nav-link mb-2 border border-primary shadow", role: "tab" do %>
+<div class="nav flex-column nav-pills text-center fw-bold text-uppercase fst-italic" aria-orientation="vertical">
+  <%= link_to root_path, class: "nav-link mb-2 border border-primary shadow",style: "background-color: #EBF5FB" , role: "tab" do %>
     <span>All categories</p></span>
   <% end %>
   <% @categories.each do |category| %>
@@ -8,7 +8,7 @@
         <span><%= category.title %></p></span>
       <% end %>
     <% else %>
-      <%= link_to quizzes_path(category_name: category.title), class: "nav-link mb-2 border border-primary shadow", role: "tab" do %>
+      <%= link_to quizzes_path(category_name: category.title), class: "nav-link mb-2 border border-primary shadow", style: "background-color: #EBF5FB", role: "tab" do %>
         <span><%= category.title %></p></span>
       <% end %>
     <% end %>

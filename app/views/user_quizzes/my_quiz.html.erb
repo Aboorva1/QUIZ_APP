@@ -11,7 +11,7 @@
     <th class="text-center">Score</th>
   </tr>
   </thead>
-  <tbody class="text-center">
+  <tbody class="text-center bg-blue">
     <% @user_quizzes.each do |user_quiz| %>
       <tr>
         <td><%= user_quiz.created_at.strftime("%d %b %Y") %></td> 

@@ -1,6 +1,6 @@
 
 <div class="text-center">
-  <div class="fs-1 fst-italic"><%="Title "%><%= @quiz.title %>
+  <div class="fs-1 fst-italic"><%="Title: "%><%= @quiz.title %>
   <% if current_user.is_admin? %>
     <%= link_to "✏", edit_quiz_path(@quiz), class: "btn btn-outline-light" %>
     <%= link_to "❎", quiz_path(@quiz), class: "btn btn-outline-light",
