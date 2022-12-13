@@ -20,18 +20,6 @@
     <tr>
       <td class="pt-2">
         <ul class="list-group list-group-flush">
-<div class = "panel">
-<table class="table table-borderless">
-<thead>
-<tr>
-  <th class="text-center">Quizzes</th>
-</tr>
-</thead>
-<tbody>
-  <% @quizzes.each do |quiz| %>
-    <tr>
-      <td class="pt-2">
-        <ul class="list-group list-group-flush">
           <p><%= link_to quiz.title, quiz %></p>
           </ul>
       </td>       
