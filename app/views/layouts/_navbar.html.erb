@@ -9,11 +9,25 @@
     </div>
   <% if user_signed_in? %> 
     <strong>
+    <strong>
       <li><%= link_to "Home", quizzes_path %></li> 
       <li><%= link_to "Leaderboard", leader_board_index_path %></li>
       <% if !current_user.is_admin? %>
         <li><%= link_to "My Quiz", my_quiz_user_quizzes_path %></li> 
+      <% if !current_user.is_admin? %>
+        <li><%= link_to "My Quiz", my_quiz_user_quizzes_path %></li> 
       <%end%>
+
+      <div class="right-nav">
+      <%if current_user.image.attached?%>
+        <%= image_tag(current_user.image,:class=> "img") %>
+      <%else%> 
+        <% if current_user.is_admin? %>
+          <img class= "img" src ="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe-OwJLExW6kXjgbYw_PfokaYVSPFlE8_Idg&usqp=CAU">
+        <% else %>
+          <img class= "img" src ="https://pic.onlinewebfonts.com/svg/img_162044.png">
+        <% end %>
+      <% end %>
 
       <div class="right-nav">
       <%if current_user.image.attached?%>
@@ -32,4 +46,9 @@
   <% end %>
   </div>
 </nav>
+    </strong> 
+  <% end %>
+  </div>
+</nav>
 </header>
+

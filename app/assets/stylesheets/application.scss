@@ -13,6 +13,7 @@
 */
 
 
+
  
 .index{
     text-align: center;
@@ -185,12 +186,39 @@ text-transform: uppercase; font-size: 14px;
   -moz-border-radius: 100px;
 }
 
+.img-circular{
+  margin-left: 600px;
+  width: 150px;
+  height: 50px;
+  background-size: cover;
+  display: block;
+  border-radius: 500px;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  position: absolute;
+  top: 5px;
+  left: 20px;    
+}
+  
+.img{
+  width: 50px;
+  height: 50px;
+  border-radius: 100px;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+}
+
 .tables{
     margin: 0;
     padding: 0px 60px;
 }
 
 .panel{
+    margin: 0;
+    width: 40%;
+    padding: 0px 60px;
+    top: 27%;
+    left: 30%;
     margin: 0;
     width: 40%;
     padding: 0px 60px;

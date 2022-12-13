@@ -20,6 +20,18 @@
     <tr>
       <td class="pt-2">
         <ul class="list-group list-group-flush">
+<div class = "panel">
+<table class="table table-borderless">
+<thead>
+<tr>
+  <th class="text-center">Quizzes</th>
+</tr>
+</thead>
+<tbody>
+  <% @quizzes.each do |quiz| %>
+    <tr>
+      <td class="pt-2">
+        <ul class="list-group list-group-flush">
           <p><%= link_to quiz.title, quiz %></p>
           </ul>
       </td>       
@@ -33,6 +45,6 @@
 
 <div class ='pagination'>
   <div class = "text-center">
-  <%= will_paginate(@quizzes,:previous_label => "&laquo;", :next_label => "&raquo;",:class=>"small-font",:outer_window => 5,:inner_window => 5) %></li>
+    <%= will_paginate(@quizzes,:previous_label => "&laquo;", :next_label => "&raquo;",:class=>"small-font",:outer_window => 5,:inner_window => 5) %></li>
   </div>
 </div>
