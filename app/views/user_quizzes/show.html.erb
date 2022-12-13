@@ -2,11 +2,13 @@
   <div class="timer">Time Left          
   <script >
   function clear_localstorage(){
-    localStorage.clear();
+    clearInterval(window.intervalId);
+    localStorage.setItem("seconds",0)
+    localStorage.setItem("minutes",0)
   }
   function startTimer(duration, display) {
     var timer = duration, minutes, seconds;
-    setInterval(function () {
+    window.intervalId = setInterval(function () {
       minutes = parseInt(timer / 60, 10)
       seconds = parseInt(timer % 60, 10);
 
@@ -20,15 +22,15 @@
         localStorage.clear();
         document.getElementById("quiz_form").submit();
       }
-    window.localStorage.setItem("seconds",seconds)
-    window.localStorage.setItem("minutes",minutes)
+    localStorage.setItem("seconds",seconds)
+    localStorage.setItem("minutes",minutes)
     }, 1000);
   }
 
   var time_limit = "<%= @quiz.minutes %>";
   window.onload = function () {
-    sec  = parseInt(window.localStorage.getItem("seconds"))
-    min = parseInt(window.localStorage.getItem("minutes"))
+    sec  = parseInt(localStorage.getItem("seconds"))
+    min = parseInt(localStorage.getItem("minutes"))
     if(min == 0 && sec != 0){
       var Minutes = parseInt(sec);
     } 
