@@ -22,9 +22,7 @@
       <% end %>
     </div>
   </div>
-  <div class ='pagination'>
-    <div class = "text-center">
-      <%= will_paginate(@quizzes,:previous_label => "&laquo;", :next_label => "&raquo;",:class=>"small-font",:outer_window => 5,:inner_window => 5) %></li>
-    </div>
+  <div class = "pagination">
+    <%= will_paginate(@quizzes,:previous_label => "&laquo;", :next_label => "&raquo;",:class=>"small-font",:outer_window => 5,:inner_window => 5) %></li>
   </div>
 </div>
