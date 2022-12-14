@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   
   validates_format_of :email, :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/i
+  validates_format_of :username, :with => /\A[A-Za-z0-9_\.\-]+\z/i
+
   has_many :quizzes, :dependent => :destroy
   has_many :user_answers, :dependent => :destroy
   has_many :user_quizzes, :dependent => :destroy

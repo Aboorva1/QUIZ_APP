@@ -24,6 +24,7 @@ User.create!(id:'1',
 5.times do
   User.create!(     
     name: Faker::Name.name,
+    username: Faker::Name.name,
     email: Faker::Internet.email,
     password: "password", 
     password_confirmation: "password",
