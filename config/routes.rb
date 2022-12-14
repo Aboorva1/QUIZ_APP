@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "registrations" }
   
   root "quizzes#index"
+  get 'home/userboard'
+  resources :home 
   resources :quizzes do 
     resources :questions do
       resources :options do
