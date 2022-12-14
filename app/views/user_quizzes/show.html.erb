@@ -3,13 +3,13 @@
   <script >
   function clear_localstorage(){
     clearInterval(window.intervalId);
-    localStorage.setItem("seconds",0)
-    localStorage.setItem("minutes",0)
+    localStorage.setItem("seconds",0);
+    localStorage.setItem("minutes",0);
   }
   function startTimer(duration, display) {
     var timer = duration, minutes, seconds;
     window.intervalId = setInterval(function () {
-      minutes = parseInt(timer / 60, 10)
+      minutes = parseInt(timer / 60, 10);
       seconds = parseInt(timer % 60, 10);
 
       minutes = minutes < 10 ? "0" + minutes : minutes;
@@ -29,8 +29,8 @@
 
   var time_limit = "<%= @quiz.minutes %>";
   window.onload = function () {
-    sec  = parseInt(localStorage.getItem("seconds"))
-    min = parseInt(localStorage.getItem("minutes"))
+    sec  = parseInt(localStorage.getItem("seconds"));
+    min = parseInt(localStorage.getItem("minutes"));
     if(min == 0 && sec != 0){
       var Minutes = parseInt(sec);
     } 
@@ -51,6 +51,7 @@
     <%= flash[:error]%>
     </div>
     <div class="row border-dark d-flex justify-content-center align-items-center h-100">
+    <h1 class="fs-1 fst-italic text-center"><%="Title: "%><%= @quiz.title %></h1>
       <div class = "quiz">
         <% if params[:page].to_i == @question_count-1 %>
           <% path = submit_quiz_user_quizzes_path %>
@@ -63,7 +64,7 @@
           <% if question.body.present? %>
             <%= form.hidden_field :page, value: params[:page]%>
             <%= form.hidden_field :auto_save, value: false, id: "auto_save"%>
-              <%= question.body %>
+              <%= "#{(params[:page].to_i)+1}. " %><%= question.body %>
               <% question.options.each do |option| %>
                 <ul>
                 <%= form.radio_button("answers[#{question.id}]", option.choice) %>

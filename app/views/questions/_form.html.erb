@@ -14,7 +14,7 @@
             </div>
             <%= form.fields_for :options, @options do |option_form| %>
             <div class="form-outline mb-4">
-            <b><%= option_form.label :choice %></b>
+            <b><%= option_form.label :option %></b>
             <%= option_form.text_field :choice, :class => "form-control form-control-lg" %>
             <%= radio_button_tag "question[options_attributes][is_correct_answer]", option_form.index, option_form.object.is_correct_answer %>
             <b><%= option_form.label :correct_option %></b>

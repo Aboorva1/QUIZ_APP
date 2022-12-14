@@ -16,7 +16,7 @@
             <%= form_with(model: [@quiz, @question, @option], local: true) do |form| %> 
               <%= form.hidden_field :question_id, value: @question.id %>
               <p class="form-outline mb-4 fs-4">
-                <h4><%= form.label :choice %><br></h4>
+                <h4><%= form.label :option %><br></h4>
                 <%= form.text_field :choice, :class => "form-control form-control-lg"  %>
               </p>
               <p class="form-outline mb-4 fs-4">
