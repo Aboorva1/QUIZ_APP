@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     end
   end
   resources :categories
+  resources :sub_categories
   resources :leader_board
   resources :user_quizzes do
     collection do
