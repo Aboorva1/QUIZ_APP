@@ -2,8 +2,7 @@ class Quiz < ApplicationRecord
     belongs_to :category
     belongs_to :user, optional: true
 
-    validates :title, presence: true
-    validates_format_of :title, :with => /\A([a-zA-Z]+\s)*[a-zA-Z]+\z/
+    validates :title, presence: true, format: { with: /\A([a-zA-Z]+\s)*[a-zA-Z]+\z/ }
     validates :minutes, presence: true
 
     has_many :questions, dependent: :destroy

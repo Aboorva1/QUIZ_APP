@@ -1,7 +1,8 @@
 class User < ApplicationRecord
   
+  validates_format_of :name, :with => /\A([a-zA-Z]+\s)*[a-zA-Z]+\z/ 
   validates_format_of :email, :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/i
-  validates_format_of :username, :with => /\A[A-Za-z0-9_\.\-]+\z/i
+  validates :username, :format => { :with => /\A[A-Za-z0-9_\.\-]+\z/i }, :uniqueness => true
 
   has_many :quizzes, :dependent => :destroy
   has_many :user_answers, :dependent => :destroy
@@ -10,3 +11,5 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 end
+
+
