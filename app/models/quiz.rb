@@ -1,5 +1,5 @@
 class Quiz < ApplicationRecord
-    belongs_to :category
+    belongs_to :sub_category
     belongs_to :user, optional: true
 
     validates :title, presence: true, format: { with: /\A([a-zA-Z]+\s)*[a-zA-Z]+\z/ }
