@@ -21,6 +21,10 @@ class QuestionsController < ApplicationController
   end
 
   def update
+    correct_index = params[:question][:options_attributes][:is_correct_answer]
+    correct_answer = @question.options[correct_index.to_i]
+    correct_answer.update(:is_correct_answer => true)
+    falsify_others = Option.where("question_id = ? AND id NOT IN (?)", @question.id, correct_answer.id).update_all(:is_correct_answer => false)
     if (@question.update(question_params))
       redirect_to @quiz
     else

@@ -1,36 +1,4 @@
-<div class="text-center">
-  <div class="fs-3">Edit Question</div>
+<h1><div class="fs-3 pt-xl-5 pl-xl-2 fst-italic text-center">Edit question</div></h1>
+<div class="d-flex align-items-center justify-content-center vh-100">
+  <%= render 'form' %>
 </div>
-<section class="vh-100 gradient-custom">
-  <div class="container py-5 h-50">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-    <div class="col-5 col-md-8 col-lg-2 col-xl-5">
-      <% if @question.errors.any? %>
-        <div class="alert alert-danger">
-          <% @question.errors.each do |attr, msg| %>
-            <ol><%= "#{attr.capitalize} #{msg}" if @question.errors[attr].first == msg %></ol>
-          <% end %>
-        </div>
-      <% end %> 
-        <div class="card border-dark" style="border-radius: 1rem;">
-          <div class="card-body p-5">
-            <%= form_with(model: [@quiz, @question]) do |form| %>
-              <%= form.hidden_field :quiz_id, value: @quiz.id%>
-              <div  class="form-outline mb-3">
-                <h4><%= form.label :Question %></h4><br>
-                <%= form.text_field :body,:class => "form-control form-control-lg" %>
-              </div>
-              <div>
-                <div class="text_center"><%= form.submit "Update question", class: "btn btn-secondary" %></div>
-              </div>
-            <% end %>
-          </div>
-          <p class="text-center">
-            <%= link_to 'Back', quiz_path, class: "btn btn-xs btn-info" %>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> 
-

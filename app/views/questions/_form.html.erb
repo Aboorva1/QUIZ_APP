@@ -1,9 +1,15 @@
 
   <section class="vh-100 gradient-custom">
-  <h1><div class="fs-3 pt-xl-5 pl-xl-2 fst-italic">Add question</div></h1>
     <div class="row">
       <div class="col">
         <div class="card shadow-2-strong card-registration" style="border-radius: 20px;">
+        <% if @question.errors.any? %>
+          <div class="alert alert-danger">
+            <% @question.errors.each do |attr, msg| %>
+              <ol><%= "#{attr.capitalize} #{msg}" if @question.errors[attr].first == msg %></ol>
+            <% end %>
+          </div>
+        <% end %>
           <div class="card-body">
             <%= form_with(model: [@quiz, @question]) do |form| %>
             <%= form.hidden_field :quiz_id, value: @quiz.id%>
@@ -13,8 +19,9 @@
               <%= form.text_field :body, :class => "form-control form-control-lg"%>
             </div>
             <%= form.fields_for :options, @options do |option_form| %>
+            
             <div class="form-outline mb-4">
-            <b><%= option_form.label :option %></b>
+            <b><%= option_form.label "option #{option_form.index + 1}" %></b>
             <%= option_form.text_field :choice, :class => "form-control form-control-lg" %>
             <%= radio_button_tag "question[options_attributes][is_correct_answer]", option_form.index, option_form.object.is_correct_answer %>
             <b><%= option_form.label :correct_option %></b>
