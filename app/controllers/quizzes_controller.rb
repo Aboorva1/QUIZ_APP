@@ -6,11 +6,12 @@ class QuizzesController < ApplicationController
 
   def index
     if(params.has_key?(:category_name))
-      @quizzes = Quiz.where(category_name: params[:category_name]).paginate(page: params[:page], per_page: 5).order("created_at desc")
+      @quizzes = Quiz.where(category_name: params[:category_name]).paginate(page: params[:page], per_page: 6).order("created_at desc")
     else
-      @quizzes = Quiz.all.paginate(page: params[:page], per_page: 5).order("created_at desc")
+      @quizzes = Quiz.all.paginate(page: params[:page], per_page: 6).order("created_at desc")
     end
     @categories = Category.all
+    @sub_categories = SubCategory.all
   end
 
   def show
@@ -25,7 +26,7 @@ class QuizzesController < ApplicationController
   
   def create
     @quiz = Quiz.new(quiz_params)
-    set_category_name
+    #set_sub_category_name
     respond_to do |format|
       if @quiz.save
         format.html { redirect_to @quiz, notice: "Quiz created!" }
@@ -65,12 +66,12 @@ class QuizzesController < ApplicationController
   end
 
   def quiz_params
-    params.require(:quiz).permit(:category_id, :category_name, :title, :minutes)
+    params.require(:quiz).permit( :sub_category_id, :title, :minutes)
   end
 
-  def set_category_name
-    @quiz.category_name = Category.find_by(id: quiz_params[:category_id]).title
-  end
+  # def set_category_name
+  #   @quiz.sub_category_name = SubCategory.find_by(id: quiz_params[:sub_category_id]).title
+  # end
 end
 
 

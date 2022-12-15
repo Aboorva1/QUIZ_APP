@@ -3,7 +3,8 @@
   <div class="col-md-2 p-0">
     <%= render 'category_panel' %>
     <% if current_user.is_admin? %>
-      <p class = "text-center"><%= link_to "New category", new_category_path, :class=>"btn btn-info" %> </p> 
+      <p class = "text-center"><%= link_to "New category", new_category_path, :class=>"btn btn-info" %> </p>
+      <p class = "text-center"><%= link_to "New Sub category", new_sub_category_path, :class=>"btn btn-info" %> </p> 
     <% end %>
   </div>
 </div>
