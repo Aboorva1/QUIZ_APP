@@ -64,6 +64,9 @@ class UserQuizzesController < ApplicationController
     end
   end
 
+  def result
+    @user_quiz = UserQuiz.last
+  end
 
   def my_quiz
     @user_quizzes = UserQuiz.where(user_id: current_user.id) 
@@ -97,6 +100,7 @@ class UserQuizzesController < ApplicationController
   def save_user_quiz(answers_count)
     session[:answers_count] = answers_count
     end_time = Time.now
+    category_id = Quiz.find_by(id: session[:quiz_id]).sub_category.category.id
     questions_count = Question.where(quiz_id: session[:quiz_id]).count
     question_scores = []
     UserAnswer.where(quiz_id: session[:quiz_id]).last(answers_count).each do |user_answer|
@@ -109,10 +113,12 @@ class UserQuizzesController < ApplicationController
       score: (question_scores.sum) * 10,
       start_time: session[:start_time],
       end_time: end_time,
-      quiz_time: duration
+      quiz_time: duration,
+      category_id: category_id,
+      answers_count: answers_count
     )
     @user_quiz.save!
-    redirect_to result_user_quizzes_path(:id => session[:quiz_id], :quiz_score => @user_quiz.score, :questions_count => questions_count, :answers_count =>answers_count)
+    redirect_to result_user_quizzes_path
   end
 
   def set_page
