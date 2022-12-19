@@ -10,4 +10,8 @@ class LeaderBoardController < ApplicationController
     end
   end
 
+  def category
+    @categories = Category.all
+  end
+
 end

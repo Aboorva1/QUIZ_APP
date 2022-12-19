@@ -1,0 +1,37 @@
+<div class = "tables">
+  <h1 class = 'text-center'>Category based leaderboard</h1>
+  <p>
+<table class="table table-bordered align-middles table-condensed">
+  <thead class="table-dark">
+  <tr>
+    <th class="text-center">Date</th>
+    <th class="text-center">Category</th>
+    <th class="text-center">Quiz</th>
+    <th class="text-center">Score</th>
+    <th class="text-center">Rank</th>
+  </tr>
+  </thead>
+  <tbody class="text-center">
+  <% @categories.each do |category| %>
+    <% @user_quizzes = UserQuiz.order("score DESC").where(category_id: category.id).limit(3) %>
+    <% if @user_quizzes.present? %>
+    <% @user_quizzes.each_with_index do |user_quiz,index| %>
+      <tr>
+        <td><%= user_quiz.created_at.strftime("%d %b %Y %I:%M") %></td>
+        <td><%= user_quiz.quiz.sub_category.category.title %></td> 
+        <td><%= user_quiz.quiz.title %></td> 
+        <td><b><%= user_quiz.score %></b></td>
+        <td><%= index+1 %></td> 
+      </tr>
+    <% end %>
+      <tr>
+        <td colspan="3"></td>
+      </tr>
+    <%end%>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+
+  
