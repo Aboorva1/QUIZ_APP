@@ -18,7 +18,7 @@
     <% score = user_quiz.score %>
       <tr>
         <td><%= user_quiz.created_at.strftime("%d %b %Y %I:%M") %></td>
-        <td><%= user_quiz.quiz.category.title %></td> 
+        <td><%= user_quiz.quiz.sub_category.category.title %></td> 
         <td><%= user_quiz.quiz.title %></td> 
         <% if score > average %>
           <td style="color: green"><b><%= score %></b></td>
