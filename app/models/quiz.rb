@@ -8,6 +8,6 @@ class Quiz < ApplicationRecord
     has_many :questions, dependent: :destroy
     has_many :user_answers, dependent: :destroy
     has_many :user_quizzes, dependent: :destroy
-
+    has_one_attached :quiz_image, :dependent => :destroy
 end
 

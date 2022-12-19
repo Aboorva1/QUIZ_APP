@@ -28,7 +28,10 @@
                   <%= form.number_field :minutes, :class => "form-control form-control-lg" %>
                 </div>
 
-                
+                <div class="form-outline mb-4">
+                  <%= form.label :image %>
+                  <%= form.file_field :quiz_image, :class => "form-control form-control-lg"%></p>
+                </div>
               </div>
               <div>
                 <%= form.submit "Create quiz", class: "btn btn-secondary" %>
