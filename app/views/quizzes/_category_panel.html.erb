@@ -1,24 +1,17 @@
-<div class="nav flex-column nav-pills text-center fw-bold text-uppercase fst-italic" aria-orientation="vertical">
-  <%= link_to root_path, class: "nav-link mb-2 border border-primary shadow",style: "background-color: #EBF5FB" , role: "tab" do %>
-    <span>All categories</p></span>
-  <% end %>
+<div class="vertical-menu text-uppercase fw-bold">
   <% @categories.each do |category| %>
-    <% if params[:category_name] == category.title %>
-      <%= link_to quizzes_path(category_name: category.title), class: "nav-link mb-2 border border-primary shadow active", role: "tab" do %>
-        <span><%= category.title %></p></span>
-      <% end %>
-    <% else %>
-      <%= link_to quizzes_path(category_name: category.title), class: "nav-link mb-2 border border-primary shadow", style: "background-color: #EBF5FB", role: "tab" do %>
-        <span><%= category.title %></p></span>
-      <% end %>
+  <ol>
+    <a class="nav-link mb-2 shadow active"><%=category.title%></a>
+    <% category.sub_categories.each do |sub_category| %>
+      <%= link_to sub_category.title, quizzes_path(sub_category_name: sub_category.title)%>
     <% end %>
-    <% if current_user.is_admin? %>
-    <ul>
-      <%= link_to "✏", edit_category_path(category), class: "btn btn-outline-light" %>
-      <%= link_to "❎", category_path(category), class: "btn btn-outline-light",
-                  method: :delete,
-                  data: { confirm: "Are you sure?" } %>
-    </ul>
-    <% end %>
+  
+  <% if current_user.is_admin? %>
+    <%= link_to "✏", edit_category_path(category), class: "text-center" %>
+    <%= link_to "❎", category_path(category),class: "text-center",
+        method: :delete,
+        data: { confirm: "Are you sure?" } %>  
+  <% end %>
+  </ol>
   <% end %>
 </div>
