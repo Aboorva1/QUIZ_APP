@@ -1,0 +1,22 @@
+
+  <h1 class = 'text-center'><%= @category.title%></h1>
+  <p>
+<table class="table table-bordered align-middles table-condensed">
+  <thead class="table-dark">
+  <tr>
+    <th class="text-center">Name</th>
+    <th class="text-center">Average</th>
+    <th class="text-center">Quizzes</th>
+  </tr>
+  </thead>
+  <tbody class="text-center">
+  <% @average.each do |category| %>
+    <% @user = User.find_by(id: category[:user])%>
+    <tr>
+      <td><%=  @user.name %></td> 
+      <td><b><%= category[:average] %></b></td>
+      <td><%= category[:count] %></td> 
+    </tr>
+    <% end %>
+  </tbody>
+</table>
