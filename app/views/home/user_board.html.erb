@@ -1,5 +1,6 @@
 <div class = "tables">
   <h1 class = 'text-center'><%= @user.name %></h1>
+  <% if @user_quizzes.present? %>
   <p>
   <table class="table table-bordered align-middles table-condensed">
   <thead class="table-dark">
@@ -16,7 +17,7 @@
     <% score = user_quiz.score %>
       <tr>
         <td><%= user_quiz.created_at.strftime("%d %b %Y %I:%M") %></td>
-        <td><%= user_quiz.quiz.category.title %></td> 
+        <td><%= user_quiz.quiz.sub_category.title %></td> 
         <td><%= user_quiz.quiz.title %></td> 
         <% if score > average %>
           <td style="color: green"><b><%= score %></b></td>
@@ -28,4 +29,8 @@
   </tbody>
   </table>
   </p>
+  <% else %>
+    <h3 class = 'text-center'><%= "User has not taken any quizzes" %></h3>
+  <% end %>
+  <p class = "text-center"><%= link_to "Back", home_index_path,:class=>"btn btn-primary"%></p>
 </div>

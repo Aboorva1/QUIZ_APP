@@ -1,13 +1,13 @@
-
-  <div class="card border border-primary" style="border-radius: 1rem;">
-    <div class="card-body p-5">
-      <h3 class="text-center text-dark fst-italic mb-3">Users</h3>
-
-<% @users.each do |user| %>
-<div class="nav flex-column nav-pills text-center fs-5"  aria-orientation="vertical">
-  <p><%= link_to user.name, home_userboard_path(:id => user.id) %></p>
+<div class="border border-primary" style="width: 500px; border-radius: 1rem;">
+  <div class="card-body p-5">
+    <h3 class="text-center text-dark fst-italic mb-3">Users</h3>
+    <% @users.each do |user| %>
+    <div class="nav flex-column nav-pills text-center fs-5"  aria-orientation="vertical">
+      <p><%= link_to user.name, home_user_board_path(:id => user.id) %></p>
+    </div>
+    <% end %>
   </div>
-<% end %>
+</div>
 
 
           
