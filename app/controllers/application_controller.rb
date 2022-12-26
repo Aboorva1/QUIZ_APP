@@ -3,6 +3,18 @@ class ApplicationController < ActionController::Base
 
     protected
 
+    before_action :set_breadcrumbs
+    def add_breadcrumb(label, path = nil)
+      @breadcrumbs  << {
+        label: label,
+        path: path
+      }
+    end
+    
+    def set_breadcrumbs
+      @breadcrumbs = []
+    end
+
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:image])
       devise_parameter_sanitizer.permit(:account_update, keys: [:image])

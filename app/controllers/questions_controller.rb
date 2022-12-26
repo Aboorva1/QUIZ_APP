@@ -17,7 +17,9 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-    
+    add_breadcrumb(@quiz.sub_category.category.title)
+    add_breadcrumb(@quiz.sub_category_name)
+    add_breadcrumb(@quiz.title,@quiz)
   end
 
   def update

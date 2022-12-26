@@ -5,21 +5,28 @@ class QuizzesController < ApplicationController
   before_action :set_quiz, only: [:show, :edit, :update, :destroy]
 
   def index
+    if(params[:sub_category_name])
+      add_breadcrumb(params[:sub_category_name])
+    end
     if(params.has_key?(:sub_category_name))
-      @quizzes = Quiz.where(sub_category_name: params[:sub_category_name]).paginate(page: params[:page], per_page: 20).order("created_at desc")
+      @quizzes = Quiz.where(sub_category_name: params[:sub_category_name]).paginate(page: params[:page], per_page: 10).order("created_at desc")
     else
-      @quizzes = Quiz.all.paginate(page: params[:page], per_page: 20).order("created_at desc")
+      @quizzes = Quiz.all.paginate(page: params[:page], per_page: 10).order("created_at desc")
     end
     @categories = Category.all
   end
 
   def show
+    add_breadcrumb(@quiz.sub_category.category.title)
+    add_breadcrumb(@quiz.sub_category_name)
+    add_breadcrumb(@quiz.title)
     @options = []
     @question = @quiz.questions.build
     4.times {@options << @question.options.build}
   end
 
   def new
+    add_breadcrumb("Quizzes")
     @quiz = Quiz.new
   end
   
@@ -36,7 +43,9 @@ class QuizzesController < ApplicationController
   end
 
   def edit
-    
+    add_breadcrumb(@quiz.sub_category.category.title)
+    add_breadcrumb(@quiz.sub_category_name)
+    add_breadcrumb(@quiz.title, @quiz)
   end
 
   def update
