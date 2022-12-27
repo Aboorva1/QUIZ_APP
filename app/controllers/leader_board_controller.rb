@@ -26,6 +26,7 @@ class LeaderBoardController < ApplicationController
     else
       @category = Category.find(params[:id])
     end
+    add_breadcrumb("Leader Board",leader_board_index_path)
     add_breadcrumb(@category.title)
     users = UserQuiz.where(category_id: @category.id).distinct.pluck(:user_id)
     @average = []

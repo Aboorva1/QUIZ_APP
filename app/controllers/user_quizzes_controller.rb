@@ -22,7 +22,7 @@ class UserQuizzesController < ApplicationController
 
   
   def show
-    add_breadcrumb(@quiz.sub_category.category.title)
+    
     add_breadcrumb(@quiz.sub_category_name)
     add_breadcrumb(@quiz.title)
     questions_per_page = 1    
@@ -126,6 +126,7 @@ class UserQuizzesController < ApplicationController
     session[:answers_count] = answers_count
     @user_quiz = UserQuiz.last
     end_time = Time.now
+    sub_category_id = Quiz.find_by(id: @user_quiz.quiz_id).sub_category.id
     category_id = Quiz.find_by(id: @user_quiz.quiz_id).sub_category.category.id
     question_scores = []
     UserAnswer.where(quiz_id: @user_quiz.quiz_id).last(answers_count).each do |user_answer|
@@ -137,6 +138,7 @@ class UserQuizzesController < ApplicationController
       end_time: end_time,
       quiz_time: duration,
       category_id: category_id,
+      sub_category_id: sub_category_id,
       answers_count: answers_count
     )
     @user_quiz.save!

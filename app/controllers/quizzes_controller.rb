@@ -17,9 +17,7 @@ class QuizzesController < ApplicationController
   end
 
   def show
-    add_breadcrumb(@quiz.sub_category.category.title)
-    add_breadcrumb(@quiz.sub_category_name)
-    add_breadcrumb(@quiz.title)
+    add_breadcrumb(@quiz.sub_category_name, quizzes_path(sub_category_name: @quiz.sub_category_name))
     @options = []
     @question = @quiz.questions.build
     4.times {@options << @question.options.build}
