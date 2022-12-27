@@ -1,17 +1,30 @@
-<div class="vertical-menu text-uppercase fw-bold">
-  <% @categories.each do |category| %>
-  <ol>
-    <a class="nav-link mb-2 shadow active"><%=category.title%></a>
-    <% category.sub_categories.each do |sub_category| %>
-      <%= link_to sub_category.title, quizzes_path(sub_category_name: sub_category.title)%>
-    <% end %>
-  
+
+<% @categories.each do |category| %>
+<ol>
+
+<div class="btn-group dropright text-right">
+  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <%= category.title%>
+  </button>
   <% if current_user.is_admin? %>
-    <%= link_to "✏", edit_category_path(category), class: "text-center" %>
-    <%= link_to "❎", category_path(category),class: "text-center",
+    <%= link_to "✏", edit_category_path(category), class: "btn btn-light text-center" %>
+    <%= link_to "❎", category_path(category),class: "btn btn-light text-center",
         method: :delete,
         data: { confirm: "Are you sure?" } %>  
   <% end %>
+  <div class="dropdown-menu text-right">
+    <% category.sub_categories.each do |sub_category| %>
+      <li><%= link_to sub_category.title, quizzes_path(sub_category_name: sub_category.title)%>
+      <% if current_user.is_admin? %>
+        <%= link_to "✏", edit_sub_category_path(sub_category), class: "btn btn-xs btn-light" %>
+        <%= link_to "❎", sub_category_path(sub_category), class: "btn btn-xs btn-light",
+          method: :delete,
+          data: { confirm: "Are you sure?" } %>  
+      <% end %></li>
+    <% end %>
+  </div>
+  </div>
   </ol>
-  <% end %>
-</div>
+  <%end%>
+  
+
