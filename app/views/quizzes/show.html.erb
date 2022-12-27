@@ -56,8 +56,8 @@
     </div>
     <p class = "text-center"><%= link_to "Start Quiz",start_user_quizzes_path(id: @quiz.id), data: { turbolinks: false }, class: "btn btn-primary"%></p>
   <% else %>
-    <%= 'Questions yet to be added' %>
-  <% end %>
+  <p><h3 class = 'text-center'><%= "Sorry! Questions are not added yet" %></h3></p>
+<% end %>
   </section>
 <% end %>
 
