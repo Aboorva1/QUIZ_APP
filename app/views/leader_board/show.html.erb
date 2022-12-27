@@ -1,17 +1,1 @@
-<div class = "tables">
-<div class="nav nav-pills nav-justified">
-  <% @categories.each do |category| %>
-    <% if params[:id].to_i == category.id %>
-      <%= link_to leader_board_path(category), class: "nav-link mb-3 shadow active", role: "tab" do %>
-      <span class="font-weight-bold small text-uppercase"><%= category.title %></p></span>
-      <% end %>
-    <% else %>
-      <%= link_to leader_board_path(category), class: "nav-link mb-3 shadow", role: "tab" do %>
-        <span class="font-weight-bold small text-uppercase"><%= category.title %></p></span>
-      <% end %>
-    <% end %>
-    <% end %>
-</div>
-
 <%= render "board"%>
-</div>

@@ -41,6 +41,22 @@ class SubCategoriesController < ApplicationController
     redirect_to root_path
   end
 
+  def show
+    @sub_category = SubCategory.find(params[:id])
+    add_breadcrumb(@sub_category.title)
+    users = UserQuiz.where(sub_category_id: @sub_category.id).distinct.pluck(:user_id)
+    @average = []
+    users.each do |user|
+      user_quizzes = UserQuiz.order('quiz_id, created_at DESC').select('distinct on (quiz_id) *').where(sub_category_id: @sub_category.id, user_id: user)
+      @average << {
+        user: user,
+        average: (user_quizzes.sum('score')/user_quizzes.count(:all)).to_i,
+        count: user_quizzes.count(:all)
+      }
+    end
+    @average.sort_by! {|average| [average[:count], average[:average]] }.reverse!
+  end
+
   private
 
   def set_sub_category

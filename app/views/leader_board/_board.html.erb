@@ -1,22 +1,51 @@
 
-  <h1 class = 'text-center'><%= @category.title%></h1>
-  <p>
-<table class="table table-bordered align-middles table-condensed">
-  <thead class="table-dark">
-  <tr>
-    <th class="text-center">Name</th>
-    <th class="text-center">Average</th>
-    <th class="text-center">Quizzes</th>
-  </tr>
-  </thead>
-  <tbody class="text-center">
-  <% @average.each do |category| %>
-    <% @user = User.find_by(id: category[:user])%>
-    <tr>
-      <td><%=  @user.name %></td> 
-      <td><b><%= category[:average] %></b></td>
-      <td><%= category[:count] %></td> 
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="container py-8">
+  <div class="row">
+    <div class="col">
+      <div class="nav nav-pills flex-column">
+        <% @categories.each do |category| %>
+          <ol>
+          <div class="btn-group dropright text-right">
+            <button type="button" onclick="location.href='<%= leader_board_path(category)%>';" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= category.title %>
+            </button>
+            <div class="dropdown-menu text-right">
+              <% category.sub_categories.each do |sub_category| %>
+                <li><%= link_to sub_category.title, sub_category_path(id: sub_category.id)%></li>
+              <% end %>
+            </div>
+          </div>
+          </ol>
+        <%end%>
+      </div>
+    </div>
+    <div class="col col-lg-8">
+      <h1 class = 'text-center'><%= @category.title%></h1>
+      <% if @average.present?%>
+        <p>
+        <table class="table table-bordered align-middles table-condensed">
+        <thead class="table-dark">
+        <tr>
+          <th class="text-center">Name</th>
+          <th class="text-center">Average</th>
+          <th class="text-center">Quizzes</th>
+        </tr>
+        </thead>
+        <tbody class="text-center">
+        <% @average.each do |category| %>
+          <% @user = User.find_by(id: category[:user])%>
+          <tr>
+            <td><%=  @user.name %></td> 
+            <td><b><%= category[:average] %></b></td>
+            <td><%= category[:count] %></td> 
+          </tr>
+        <% end %>
+        </tbody>
+        </table>
+        </p>
+      <% else %>
+        <h3 class = 'text-center'><%= "User has not taken any quizzes" %></h3>
+      <% end %>
+    </div>
+  </div>
+</div>
