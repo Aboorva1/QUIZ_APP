@@ -1,4 +1,9 @@
 class SubCategoriesController < ApplicationController
+
+  before_action :authenticate_user!
+  before_action :set_sub_category, only: [:edit, :update, :destroy]
+  before_action :check_user, only: [:new, :create, :edit, :update, :destroy]
+
   def new
     @sub_category = SubCategory.new
   end
@@ -12,6 +17,28 @@ class SubCategoriesController < ApplicationController
         format.html { render action: 'new' }
       end
     end
+  end
+
+  def update
+    if @sub_category.update(sub_category_params)
+      redirect_to quizzes_path
+    else
+      render :edit
+    end
+  end
+
+  def edit
+
+  end
+
+  def destroy
+    @sub_category.destroy
+    if @sub_category.destroyed?
+      flash[:success] = 'Category deleted'
+    else
+      flash[:error] = 'Failed to destroy'
+    end
+    redirect_to root_path
   end
 
   private
