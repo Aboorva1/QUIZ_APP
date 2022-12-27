@@ -15,9 +15,6 @@
       <li class="nav-item">
         <%= link_to 'Leaderboard', leader_board_index_path, class: 'nav-link' %>
       </li>
-      <li class="nav-item">
-        <%= link_to 'Category', leader_board_category_path, class: 'nav-link' %>
-      </li>
       <% if !current_user.is_admin? %>
         <li class="nav-item">
           <%= link_to 'My Quiz', my_quiz_user_quizzes_path, class: 'nav-link' %>

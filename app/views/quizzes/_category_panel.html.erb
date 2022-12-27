@@ -2,7 +2,7 @@
 <% @categories.each do |category| %>
 <ol>
 
-<div class="btn-group dropright text-right">
+<div class="btn-group">
   <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <%= category.title%>
   </button>
@@ -12,7 +12,7 @@
         method: :delete,
         data: { confirm: "Are you sure?" } %>  
   <% end %>
-  <div class="dropdown-menu text-right">
+  <div class="dropdown-menu">
     <% category.sub_categories.each do |sub_category| %>
       <li><%= link_to sub_category.title, quizzes_path(sub_category_name: sub_category.title)%>
       <% if current_user.is_admin? %>
