@@ -6,5 +6,12 @@ class Question < ApplicationRecord
   accepts_nested_attributes_for :options, allow_destroy: true
 
   validates :body, presence: true
+  validate :uniqueness_of_options
+ 
+  private
+ 
+  def uniqueness_of_options
+    errors.add(:options, 'must be unique') if options.map(&:choice).uniq.size != options.size
+  end
   
 end
