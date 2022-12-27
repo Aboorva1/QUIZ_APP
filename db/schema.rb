@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_16_084044) do
+ActiveRecord::Schema.define(version: 2022_12_27_082833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(version: 2022_12_16_084044) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "user_correct_answer"
     t.integer "score"
+    t.integer "user_quiz_id"
     t.index ["option_id"], name: "index_user_answers_on_option_id"
     t.index ["question_id"], name: "index_user_answers_on_question_id"
     t.index ["quiz_id"], name: "index_user_answers_on_quiz_id"
@@ -116,6 +117,7 @@ ActiveRecord::Schema.define(version: 2022_12_16_084044) do
     t.integer "quiz_time"
     t.integer "category_id"
     t.integer "answers_count"
+    t.integer "sub_category_id"
     t.index ["quiz_id"], name: "index_user_quizzes_on_quiz_id"
     t.index ["user_id"], name: "index_user_quizzes_on_user_id"
   end
