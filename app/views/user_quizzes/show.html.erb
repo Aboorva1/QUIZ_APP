@@ -1,4 +1,5 @@
 <section class="vh-100 gradient-custom">
+  <div class="timer">Time Left  
   <div class="timer">Time Left          
   <script >
   function clear_localstorage(){
@@ -53,7 +54,7 @@
     <div class="row border-dark d-flex justify-content-center align-items-center h-100">
     <h1 class="fs-1 fst-italic text-center"><%="Title: "%><%= @quiz.title %></h1>
       <div class = "quiz">
-        <% if params[:page].to_i == @question_count-1 %>
+        <% if params[:page].to_i == @quiz.questions.count-1 %>
           <% path = submit_quiz_user_quizzes_path %>
         <% else %>
           <% path = save_answer_user_quizzes_path%>
@@ -61,22 +62,27 @@
         <%= form_with url: path, id: "quiz_form", method: :post do |form| %>
         <ol>
         <% @question.each do |question| %>
+          <% stored_answer = get_stored_answers(session[:user_quiz_id], question.id)%>
           <% if question.body.present? %>
             <%= form.hidden_field :page, value: params[:page]%>
             <%= form.hidden_field :auto_save, value: false, id: "auto_save"%>
               <%= "#{(params[:page].to_i)+1}. " %><%= question.body %>
               <% question.options.each do |option| %>
                 <ul>
-                <%= form.radio_button("answers[#{question.id}]", option.choice) %>
+                <% stored_answer == option.choice ? check = true : check = false %>
+                <%= form.radio_button("answers[#{question.id}]", option.choice, checked: check) %>
                 <%= label_tag "#{option.choice}", option.choice %>
                 </ul>
               <% end %>
           <% end %>
         <% end %>
-        <% if params[:page].to_i == @question_count - 1 %>
-          <%= form.submit "Submit quiz", class: "btn btn-primary", :onClick => "clear_localstorage()"%>
+        <% if params[:page].to_i != 0 %>
+          <%= link_to 'Previous','javascript:history.back()', class: "btn btn-success" %>
+        <% end %>
+        <% if params[:page].to_i == @quiz.questions.count - 1 %>
+          <%= form.submit "Submit quiz", class: "btn btn-primary", :onClick => "clear_localstorage()" %>
         <% else %>
-          <%= form.submit "Next", class: "btn btn-success" %>
+          <%= form.submit "Next", class: "btn btn-success pull-right"%>
         <% end %>
         </ol>
       </div>
