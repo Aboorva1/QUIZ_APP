@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   end
   
   root "quizzes#index"
-  get 'home/userboard'
+  get 'home/user_board'
   get 'leader_board/category'
   resources :home 
   resources :quizzes do 
@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :leader_board
   resources :user_quizzes do
     collection do
+      get 'start'
       get 'result'
       get 'my_quiz'
       post 'user_quiz_page'
