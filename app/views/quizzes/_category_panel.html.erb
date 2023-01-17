@@ -1,24 +1,30 @@
-<div class="nav flex-column nav-pills"  aria-orientation="vertical">
-  <%= link_to root_path, class: "nav-link mb-3 shadow", role: "tab" do %>
-    <span class="font-weight-bold small text-uppercase">All</p></span>
+
+<% @categories.each do |category| %>
+<ol>
+<div class="btn-group">
+  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <%= category.title%>
+  </button>
+  <% if current_user.is_admin? %>
+    <%= link_to "✏", edit_category_path(category), class: "btn btn-light text-center" %>
+    <%= link_to "❎", category_path(category),class: "btn btn-light text-center",
+        method: :delete,
+        data: { confirm: "Are you sure?" } %>  
   <% end %>
-  <% @categories.each do |category| %>
-    <% if params[:category_name] == category.title %>
-      <%= link_to quizzes_path(category_name: category.title), class: "nav-link mb-3 shadow active", role: "tab" do %>
-        <span class="font-weight-bold small text-uppercase"><%= category.title %></p></span>
-      <% end %>
-    <% else %>
-      <%= link_to quizzes_path(category_name: category.title), class: "nav-link mb-3 shadow", role: "tab" do %>
-        <span class="font-weight-bold small text-uppercase"><%= category.title %></p></span>
-      <% end %>
+  <div class="dropdown-menu">
+    <% category.sub_categories.each do |sub_category| %>
+      <li><%= link_to sub_category.title, quizzes_path(sub_category_name: sub_category.title)%>
+      <% if current_user.is_admin? %>
+        <%= link_to "✏", edit_sub_category_path(sub_category), class: "btn btn-xs btn-light" %>
+        <%= link_to "❎", sub_category_path(sub_category), class: "btn btn-xs btn-light",
+          method: :delete,
+          data: { confirm: "Are you sure?" } %>  
+      <% end %></li>
     <% end %>
-    <% if current_user.is_admin? %>
-    <ul>
-      <%= link_to "✏", edit_category_path(category) %>
-      <%= link_to "❎", category_path(category),
-                  method: :delete,
-                  data: { confirm: "Are you sure?" } %>
-    </ul>
-    <% end %>
-  <% end %>
+  </div>
 </div>
+</ol>
+<%end%>
+
+  
+

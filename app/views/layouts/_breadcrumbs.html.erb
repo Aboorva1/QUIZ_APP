@@ -1,0 +1,19 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <% @breadcrumbs.each do |breadcrumb| %>
+    <% if breadcrumb[:path].nil? %>
+    <li class= "breadcrumb-item active" aria-current="page">
+    <%= breadcrumb[:label] %>
+    </li>
+    <%# <% if controller_name == 'Quizzes' && action_name == 'index' %>
+    <%# <li class="breadcrumb-item active" aria-current="page">Quizzes</li> %>
+    <% else %>
+    <li class="breadcrumb-item">
+    <%= link_to  breadcrumb[:label], breadcrumb[:path] %>
+    </li>
+    <%# <li class="breadcrumb-item"><a href="/Quizzes">Quizzes</a></li> %>
+    <% end %>
+    <% end %>
+  </ol>
+</nav>

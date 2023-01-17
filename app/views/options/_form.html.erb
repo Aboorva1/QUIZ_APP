@@ -4,23 +4,33 @@
   <div class="container h-50">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-2 col-xl-5">
+      <% if @option.errors.any? %>
+        <div class="alert alert-danger">
+          <% @option.errors.each do |attr, msg| %>
+            <ol><%= "#{attr.capitalize} #{msg}" if @option.errors[attr].first == msg %></ol>
+          <% end %>
+        </div>
+      <% end %> 
         <div class="card" style="border-radius: 1rem;">
-          <div class="card-body p-5 text-center">
+          <div class="card-body p-5">
             <%= form_with(model: [@quiz, @question, @option], local: true) do |form| %> 
               <%= form.hidden_field :question_id, value: @question.id %>
-              <p class="form-outline mb-4">
-                <%= form.label :choice %><br>
-                <%= form.text_field :choice %>
+              <p class="form-outline mb-4 fs-4">
+                <h4><%= form.label :option %><br></h4>
+                <%= form.text_field :choice, :class => "form-control form-control-lg"  %>
               </p>
-              <p class="form-outline mb-4">
-                <%= form.label :correct_option %>
-                <%= form.radio_button :is_correct_answer, checked: true %>
+              <p class="form-outline mb-4 fs-4">
+                <h5><%= form.label :correct_option %>
+                <%= form.radio_button :is_correct_answer, checked: true %></h5>
               </p>
               <div>
-                <%= form.submit "Save Option" %>
+                <%= form.submit "Save Option", class: "btn btn-secondary" %>
               </div>
             <% end %>
           </div>
+          <p class="text-center">
+            <%= link_to 'Back', quiz_path, class: "btn btn-xs btn-info" %>
+          </p>
         </div>
       </div>
     </div>

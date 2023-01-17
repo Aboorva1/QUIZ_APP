@@ -1,36 +1,90 @@
-
 <section class="vh-100 gradient-custom">
+  <div class="timer">Time Left            
+  <script >
+  function clear_localstorage(){
+    clearInterval(window.intervalId);
+    localStorage.setItem("seconds",0);
+    localStorage.setItem("minutes",0);
+  }
+  function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    window.intervalId = setInterval(function () {
+      minutes = parseInt(timer / 60, 10);
+      seconds = parseInt(timer % 60, 10);
+
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
+
+      display.textContent = minutes + " :" + " " + seconds;
+
+      if (--timer < 0) {
+        document.getElementById("auto_save").value = true;
+        localStorage.clear();
+        document.getElementById("quiz_form").submit();
+      }
+    localStorage.setItem("seconds",seconds)
+    localStorage.setItem("minutes",minutes)
+    }, 1000);
+  }
+
+  var time_limit = "<%= @quiz.minutes %>";
+  window.onload = function () {
+    sec  = parseInt(localStorage.getItem("seconds"));
+    min = parseInt(localStorage.getItem("minutes"));
+    if(min == 0 && sec != 0){
+      var Minutes = parseInt(sec);
+    } 
+    else if(parseInt(min*sec)){
+      var Minutes = (parseInt(min*60)+sec);
+    }else{
+      var Minutes = 60 * time_limit;
+    }
+    display = document.querySelector('#time');
+    startTimer(Minutes, display);
+  };
+  </script>
+
+  <div id="time"></div>
+</div>
   <div class="container py-5 h-50">
     <div class = "error">
     <%= flash[:error]%>
     </div>
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class = "tables">
-        <div class = "quiz">
-        <% if params[:page].to_i == @question_count-1 %>
+    <div class="row border-dark d-flex justify-content-center align-items-center h-100">
+    <h1 class="fs-1 fst-italic text-center"><%="Title: "%><%= @quiz.title %></h1>
+      <div class = "quiz">
+        <% if params[:page].to_i == @quiz.questions.count-1 %>
           <% path = submit_quiz_user_quizzes_path %>
         <% else %>
           <% path = save_answer_user_quizzes_path%>
         <% end%>
-        <%= form_with url: path, method: :post do |form| %>
+        <%= form_with url: path, id: "quiz_form", method: :post do |form| %>
         <ol>
         <% @question.each do |question| %>
+          <% stored_answer = get_stored_answers(session[:user_quiz_id], question.id)%>
           <% if question.body.present? %>
             <%= form.hidden_field :page, value: params[:page]%>
-              <%= question.body %>
+            <%= form.hidden_field :auto_save, value: false, id: "auto_save"%>
+              <%= "#{(params[:page].to_i)+1}. " %><%= question.body %>
               <% question.options.each do |option| %>
                 <ul>
-                <%= form.radio_button("answers[#{question.id}]", option.choice) %>
+                <% stored_answer == option.choice ? check = true : check = false %>
+                <%= form.radio_button("answers[#{question.id}]", option.choice, checked: check) %>
                 <%= label_tag "#{option.choice}", option.choice %>
                 </ul>
               <% end %>
           <% end %>
         <% end %>
-        <% if params[:page].to_i == @question_count - 1 %>
-          <%= form.submit "Submit quiz", class: "btn btn-primary" %>
+        <% if params[:page].to_i != 0 %>
+          <%= link_to 'Previous','javascript:history.back()', class: "btn btn-success" %>
+        <% end %>
+        <% if params[:page].to_i == @quiz.questions.count - 1 %>
+          <%= form.submit "Submit quiz", class: "btn btn-primary", :onClick => "clear_localstorage()" %>
         <% else %>
-          <%= form.submit "Next", class: "btn btn-primary" %>
+          <%= form.submit "Next", class: "btn btn-success pull-right"%>
         <% end %>
         </ol>
+      </div>
 <% end %>
+</section>
   

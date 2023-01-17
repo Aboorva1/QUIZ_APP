@@ -39,25 +39,34 @@ height: calc(100% - 73px);
 height: 100%;
 }
 }
+.nav .nav-link{
+  color: black;
+}
 
+.navbar-nav .nav-link{
+    color: white;
+    font-weight: 500;
+}
 .card{
-    width: 380px;
+    border: 10px solid rgb(8, 8, 8);
+    width: 500px;
     border-width: medium;
-    border-color: #991566;
+    margin: 20px 0px 20px 0px;
   }
 
 .quiz{
     align-items: center;
     color: black;
-    border-radius: 20px;
-    padding: 50px 100px 200px 100px;
+    border-color: black;
+    border-radius: 10px;
+    margin: 5px 60px 0px 50px;
+    padding: 50px 50px 50px 50px;
     font-family: 'Montserrat', sans-serif;
-    
-    max-width: 2000px;
-}
-.quiz{
+    background-color: #EBF5FB ;
+    max-width: 1000px;
     font-size: 30px;
 }
+
 .question{
     width: 75%;
 }
@@ -65,55 +74,13 @@ height: 100%;
     position: relative;
     padding-left: 40px;
 }
-#options label{
-    
-    margin-bottom: 15px;
-    font-size: 20px;
-    cursor: pointer;
-}
-.options input{
-    opacity: 0;
-}
-.checkmark {
-    position: absolute;
-    top: -1px;
-    left: 0;
-    
-    background-color: #555;
-    border: 1px solid #ddd;
-   
-}
-.options input:checked ~ .checkmark:after {
-    display: block;
-}
-.options .checkmark:after{
-    content: "";
-	top: 50%;
-	left: 50%;
-    display: block;
-	background: white;
-    position: absolute;
-    
-    transform: translate(-50%,-50%) scale(0);
-    transition: 300ms ease-in-out 0s;
-}
 
-.options input[type="radio"]:checked ~ .checkmark{
-    background: #21bf73;
-    transition: 300ms ease-in-out 0s;
-}
-.options input[type="radio"]:checked ~ .checkmark:after{
-    transform: translate(-50%,-50%) scale(1);
-}
-
-.table td {
-    text-align: center;
-    }
 .table {
-        border-collapse: collapse;
-        border-spacing: 0;
-        width: 50%;
-        border: 1px solid #ddd;
+    margin-top: 30px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 50%;
+    border: 1px solid #ddd;
     }
 
 .error{
@@ -123,38 +90,13 @@ height: 100%;
     text-align: left;
     font-style: italic;
 }
-header{
-    background: #55d6aa;
-    }
+
     header::after {
     content: '';
     display: table;
     clear: both;
     }
-     
-.right-nav {
-    float: right;
-}
-.left-nav{
-    float: left;
-}    
-nav {
-float: center;
-}
-nav ul {
-margin: 0;
-padding: 0;
-list-style: none;
-}
-nav li { display: inline-block; 
-    margin-left: 70px;
-    padding-top: 35px;
-}
-nav a {
-color: #444;
-text-decoration: none;
-text-transform: uppercase; font-size: 14px;
-}
+
 .container {
     width:1000px;
     margin:auto;
@@ -163,66 +105,35 @@ text-transform: uppercase; font-size: 14px;
     width:500px;
     }
 
-
-.img-circular{
-  margin-left: 600px;
-  width: 150px;
-  height: 50px;
-  background-size: cover;
-  display: block;
-  border-radius: 500px;
-  -webkit-border-radius: 100px;
-  -moz-border-radius: 100px;
-  position: absolute;
-  top: 5px;
-  left: 20px;    
-}
-  
 .img{
   width: 50px;
   height: 50px;
   border-radius: 100px;
-  -webkit-border-radius: 100px;
-  -moz-border-radius: 100px;
 }
-
-.img-circular{
-  margin-left: 600px;
-  width: 150px;
-  height: 50px;
-  background-size: cover;
-  display: block;
-  border-radius: 500px;
-  -webkit-border-radius: 100px;
-  -moz-border-radius: 100px;
-  position: absolute;
-  top: 5px;
-  left: 20px;    
-}
-  
-.img{
-  width: 50px;
-  height: 50px;
+.profile{
+  width: 30px;
+  height: 30px;
   border-radius: 100px;
-  -webkit-border-radius: 100px;
-  -moz-border-radius: 100px;
+  margin-top: 7px;
 }
-
 .tables{
     margin: 0;
     padding: 0px 60px;
 }
 
+.quizzes{
+  width: 800px;
+  padding: 0px 30px 0px 100px;
+  top: 18%;
+  left: 32%;
+  position: absolute;
+}
+
 .panel{
     margin: 0;
     width: 40%;
-    padding: 0px 60px;
-    top: 27%;
-    left: 30%;
-    margin: 0;
-    width: 40%;
-    padding: 0px 60px;
-    top: 27%;
+    padding: 0px 0px 0px 80px;
+    top: 18%;
     left: 30%;
     position: absolute;
 }
@@ -237,41 +148,100 @@ text-transform: uppercase; font-size: 14px;
 }
 
 .pagination {
-    background: white;
-    cursor: default;
-    
-  }
-  .pagination a, .pagination span, .pagination em {
-    padding: 0.2em 0.5em;
-    display: block;
-    float: left;
-    margin-right: 1px; 
-  }
-  .pagination .disabled {
-    color: #999999;
-    border: 1px solid #dddddd; 
-  }
-  .pagination .current {
-    font-style: normal;
-    font-weight: bold;
-    background: #21a3a3;
-    color: white;
-    border: 1px solid #0aa1a1;
-   }
-  .pagination a {
-    text-decoration: none;
-    color: #105cb6;
-    border: 1px solid #9aafe5;
-   }
-  
-  .pagination:after {
-    content: ".";
-    display: block;
-    height: 0;
-    clear: both;
-    visibility: hidden; 
-  }
-  * html .pagination {
-    height: 1%; }
-  
+  text-align: center;
+  margin: 0px 30px 0px 60px;
+  padding: 1em;
+  cursor: default; 
+}
+.pagination a, .pagination span {
+  padding: 0.2em 0.3em; 
+}
+.pagination .disabled {
+  color: #aaaaaa; 
+}
+.pagination .current {
+  font-style: normal;
+  font-weight: bold;
+  color: blue;
+  background-color: #3eabf3;
+  display: inline-block;
+  width: 1.4em;
+  height: 1.4em;
+  line-height: 1.5;
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em;
+  border-radius: 1em;
+ }
+.pagination a {
+  text-decoration: none;
+  color: blue;
+ }
+.pagination a:hover, .pagination a:focus {
+  background: white; 
+}
 
+.timer{
+  color: #004085;
+  background: #cce5ff;
+  border: 1px solid #b8daff;
+  height: 45px;
+  margin: 0px 50px 10px 50px;
+  padding: 0 15px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 180px;
+  float: right; 
+  font-size: 20px;
+  user-select: none;
+}
+
+
+.info_box{
+    align-items: center;
+    padding: 30px 300px 30px 300px;
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 10%;
+    margin-right: 10%;
+    max-width: 2000px;
+}
+
+.question_table{
+    margin-top: 30px;  
+    border-radius: 20px;  
+    border-spacing: 0;
+    width: 110%;
+    border: 1px solid rgb(8, 8, 8);
+}
+
+.card-img-top {
+  width: 100%;
+  height: 10vw;
+  object-fit: cover;
+}
+
+.blank_row{
+  height: 10px !important; /* overwrites any other rules */
+  background-color: grey;
+
+}
+
+.btn-group button{
+  width: 200px; /* Set a width if you like */
+}
+
+.btn-group a {
+  color: black; /* Black text color */
+  width: 50px; /* Add some padding */
+  text-decoration: none; /* Remove underline from links */
+}
+
+.btn-group {
+  display: none; 
+}
+
+.btn-group:hover .dropdown-menu {
+  display: block;
+  top: 70%;
+}

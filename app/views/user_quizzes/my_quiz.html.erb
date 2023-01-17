@@ -1,22 +1,30 @@
 
 
 <div class = "tables">
-  <h1>My Quizzes</h1>
+  <h1 class = 'text-center'>My Quizzes</h1>
   <p>
-  <table class="table table-striped table-bordered table-condensed">
+  <table class="table table-bordered align-middles table-condensed">
   <thead class="table-dark">
   <tr>
     <th class="text-center">Date</th>
+    <th class="text-center">Category</th>
     <th class="text-center">Quiz</th>
     <th class="text-center">Score</th>
   </tr>
   </thead>
-  <tbody>
+  <tbody class="text-center">
     <% @user_quizzes.each do |user_quiz| %>
+    <% average = ((user_quiz.quiz.questions.count)* 10) / 2  %>
+    <% score = user_quiz.score %>
       <tr>
-        <td><%= user_quiz.created_at.strftime("%d %b %Y") %></td> 
+        <td><%= user_quiz.created_at.strftime("%d %b %Y %I:%M") %></td>
+        <td><%= user_quiz.quiz.sub_category.category.title %></td> 
         <td><%= user_quiz.quiz.title %></td> 
-        <td><%= user_quiz.score %></td>         
+        <% if score > average %>
+          <td style="color: green"><b><%= score %></b></td>
+        <% else %> 
+          <td style="color: red"><b><%= score %></b></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

@@ -3,48 +3,39 @@
   <div class="col-md-2 p-0">
     <%= render 'category_panel' %>
     <% if current_user.is_admin? %>
-      <p class = "text-center"><%= link_to "New category", new_category_path, :class=>"btn btn-info" %> </p> 
+      <p class = "text-center"><%= link_to "New category", new_category_path, :class=>"btn btn-info" %> </p>
+      <p class = "text-center"><%= link_to "New Sub category", new_sub_category_path, :class=>"btn btn-info" %> </p> 
     <% end %>
   </div>
 </div>
 
-<div class = "panel">
-<table class="table table-borderless">
-<thead>
-<tr>
-  <th class="text-center">Quizzes</th>
-</tr>
-</thead>
-<tbody>
-  <% @quizzes.each do |quiz| %>
-    <tr>
-      <td class="pt-2">
-        <ul class="list-group list-group-flush">
-<div class = "panel">
-<table class="table table-borderless">
-<thead>
-<tr>
-  <th class="text-center">Quizzes</th>
-</tr>
-</thead>
-<tbody>
-  <% @quizzes.each do |quiz| %>
-    <tr>
-      <td class="pt-2">
-        <ul class="list-group list-group-flush">
-          <p><%= link_to quiz.title, quiz %></p>
-          </ul>
-      </td>       
-    </tr>
-  <% end %>
-</tbody>
-</table>
-<% if current_user.is_admin? %>
-  <p class = "text-center"><%= link_to "New Quiz", new_quiz_path, :class=>"btn btn-info"%></p>
-<% end %>
 
-<div class ='pagination'>
-  <div class = "text-center">
+  <div class = "quizzes">
+    <h3 class="text-center text-dark fst-italic mb-3">Quizzes</h3>
+    <div class="row">
+      <% @quizzes.each do |quiz| %>
+        <div class="col-12 col-lg-6">
+          <div class="card" style= "width: 300px;">
+            <div class="card-body">
+             <%if quiz.quiz_image.attached?%>
+              <%= image_tag(quiz.quiz_image,:class=> "img") %>
+            <%else%> 
+              <%= image_tag("https://img.freepik.com/free-vector/comic-style-question-mark-speech-bubble-background_1017-23978.jpg?size=338&ext=jpg&ga=GA1.2.1518425040.1666200081", :class => "img")%>
+            <% end %>
+            <%= link_to quiz.title, quiz ,:class=>"btn btn-light" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <% if current_user.is_admin? %>
+      <p class = "text-center"><%= link_to "New Quiz", new_quiz_path, :class=>"btn btn-info"%></p>
+    <% end %>
+  <div class = "pagination">
     <%= will_paginate(@quizzes,:previous_label => "&laquo;", :next_label => "&raquo;",:class=>"small-font",:outer_window => 5,:inner_window => 5) %></li>
   </div>
 </div>
+
+
+
+  

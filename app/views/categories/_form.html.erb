@@ -2,23 +2,31 @@
   <div class="container py-5 h-50">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-0 col-xl-5">
+        <% if @category.errors.any? %>
+          <div class="alert alert-danger">
+            <% @category.errors.each do |attr, msg| %>
+              <ol><%= "#{attr.capitalize} #{msg}" if @category.errors[attr].first == msg %></ol>
+            <% end %>
+          </div>
+        <% end %> 
         <div class="card" style="border-radius: 1rem;">
-          <div class="card-body p-5 text-center">
+          <div class="card-body p-5">
             <%= form_with model: @category do |form| %>
               <div>
-                <div class="form-outline mb-4">
-                  <b><%= form.label :title %><br></b>
-                  <%= form.text_field :title %>
+                <div class="form-outline mb-4 fs-3">
+                  <h4><%= form.label :title %>
+                  <%= form.text_field :title, :class => "form-control form-control-lg" %></h4>
                 </div>
-                <% @category.errors.full_messages_for(:title).each do |message| %>
-                  <div><%= message %></div>
-                <% end %>
               </div>
-              <div>
-                <%= form.submit %>
+              <div class="text_center">
+                <%= form.submit "Create category", class: "btn btn-secondary" %>
               </div>
             <% end %>
           </div>
+          <p class="text-center">
+            <%= link_to 'Back', quizzes_path, class: "btn btn-xs btn-info" %>
+          </p>
+        </div>
         </div>
       </div>
     </div>

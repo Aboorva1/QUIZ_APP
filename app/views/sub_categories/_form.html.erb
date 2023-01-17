@@ -1,0 +1,39 @@
+<section class="vh-100 gradient-custom">
+  <div class="container py-5 h-50">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-0 col-xl-5">
+        <% if @sub_category.errors.any? %>
+          <div class="alert alert-danger">
+            <% @sub_category.errors.each do |attr, msg| %>
+              <ol><%= "#{attr.capitalize} #{msg}" if @sub_category.errors[attr].first == msg %></ol>
+            <% end %>
+          </div>
+        <% end %> 
+        <div class="card" style="border-radius: 1rem;">
+          <div class="card-body p-5">
+            <%= form_with model: @sub_category do |form| %>
+              <div>
+                <div class="mb-3">
+                  <b><%= form.label :Category %>
+                  <%= collection_select :sub_category, :category_id, Category.all, :id, :title ,{ include_blank: false }, { class: 'form-control form-control-lg' } %>
+                </div>
+
+                <div class="form-outline mb-4 fs-3">
+                  <h4><%= form.label :title %>
+                  <%= form.text_field :title, :class => "form-control form-control-lg" %></h4>
+                </div>
+              </div>
+              <div class="text_center">
+                <%= form.submit "Create subcategory", class: "btn btn-secondary" %>
+              </div>
+            <% end %>
+          </div>
+          <p class="text-center">
+            <%= link_to 'Back', quizzes_path, class: "btn btn-xs btn-info" %>
+          </p>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

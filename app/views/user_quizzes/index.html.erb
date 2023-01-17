@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row d-flex justify-content-center align-items-center">
+    <h2 class="text-center fst-italic">Your Answers</h2>
+    <% @questions.zip(@user_answers) do |question, user_answer| %>
+    <% if user_answer.present? %>
+      <% your_answer = user_answer.option.choice %>
+    <% else %>
+      <% your_answer = "-" %>
+    <% end %>
+      <% correct_answer = question.options.find_by(is_correct_answer: "true").choice %>     
+      <div class="card w-75 border-dark mb-3 shadow fs-5">
+        <div class="card-body"> 
+          <h4><%="Question: "%><%= question.body %></h4>
+          <%="Options: "%>
+          <% question.options.each do |option| %>
+            <li><%= option.choice %></li>
+          <% end %>
+          <% if your_answer == correct_answer %>
+            <div class="text-success text-center"><%="Your Answer is "%><b><%= your_answer%></b></div>
+          <% else %>
+            <div class="text-danger text-center"><%="Your Answer is "%><b><%= your_answer%></b></div>
+            <div class="text-success text-center"><%= "Correct Answer is "%><b><%= correct_answer%></b></div>
+          <% end %> 
+        </div>
+      </div> 
+    <%end%>
+    <p class = "text-center"><%= link_to "Back to Home", quizzes_path,:class=>"btn btn-primary"%></p>
+  </div>
+</div>
+

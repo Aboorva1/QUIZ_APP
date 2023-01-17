@@ -2,26 +2,48 @@
   <div class="container py-5 h-50">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-0 col-xl-5">
+        <% if @quiz.errors.any? %>
+            <div class="alert alert-danger">
+            <% @quiz.errors.each do |attr, msg| %>
+              <ol><%= "#{attr.capitalize} #{msg}" if @quiz.errors[attr].first == msg %></ol>
+            <% end %>
+          </div>
+        <% end %> 
         <div class="card" style="border-radius: 1rem;">
-          <div class="card-body p-5 text-center">
+          <div class="card-body p-5">
             <%= form_with model: @quiz do |form| %>
               <div>
-                <%= collection_select(:quiz, :category_id, Category.all, :id, :title) %>
+                <div class="mb-3">
+                  <b><%= form.label :sub_category %>
+                  <%= collection_select :quiz, :sub_category_id, SubCategory.all, :id, :title ,{ include_blank: false }, { class: 'form-control form-control-lg' } %>
+                </div>
+
                 <div class="form-outline mb-4">
                   <%= form.label :title %><br>
-                  <%= form.text_field :title %>
+                  <%= form.text_field :title, :class => "form-control form-control-lg" %>
                 </div>
-                <% @quiz.errors.full_messages_for(:title).each do |message| %>
-                  <div><%= message %></div>
-                <% end %>
+                
+                <div class="form-outline mb-4">
+                  <%= form.label :enter_the_time_limit_in_minutes %><br>
+                  <%= form.number_field :minutes, :class => "form-control form-control-lg" %>
+                </div>
+
+                <div class="form-outline mb-4">
+                  <%= form.label :image %>
+                  <%= form.file_field :quiz_image, :class => "form-control form-control-lg"%></p>
+                </div>
               </div>
               <div>
-                <%= form.submit %>
+                <%= form.submit "Create quiz", class: "btn btn-secondary" %>
               </div>
             <% end %>
           </div>
+          <p class="text-center">
+            <%= link_to 'Back', quizzes_path, class: "btn btn-xs btn-info" %>
+          </p>
         </div>
       </div>
     </div>
   </div>
 </section>
+

@@ -1,26 +1,34 @@
 
   <section class="vh-100 gradient-custom">
-  <strong><div class="fs-3 pt-xl-5 pl-xl-4">Add question</div></strong>
-    <div class="row h-50">
-      <div class="col-10">
-        <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+    <div class="row">
+      <div class="col">
+        <div class="card shadow-2-strong card-registration" style="border-radius: 20px;">
+        <% if @question.errors.any? %>
+          <div class="alert alert-danger">
+            <% @question.errors.each do |attr, msg| %>
+              <ol><%= "#{attr.capitalize} #{msg}" if @question.errors[attr].first == msg %></ol>
+            <% end %>
+          </div>
+        <% end %>
           <div class="card-body">
             <%= form_with(model: [@quiz, @question]) do |form| %>
             <%= form.hidden_field :quiz_id, value: @quiz.id%>
             <p>
-            <div>
-              <b><%= form.label :Question %></b><br>
-              <%= form.text_field :body %>
+            <div class="form-outline mb-4">
+              <b><%= form.label :Question %></b>
+              <%= form.text_field :body, :class => "form-control form-control-lg"%>
             </div>
             <%= form.fields_for :options, @options do |option_form| %>
-            <p>
-            <b><%= option_form.label :choice %></b><br>
-            <%= option_form.text_field :choice %>
-            <b><%= option_form.label :correct_option %></b>
+            
+            <div class="form-outline mb-4">
+            <b><%= option_form.label "option #{option_form.index + 1}" %></b>
+            <%= option_form.text_field :choice, :class => "form-control form-control-lg" %>
             <%= radio_button_tag "question[options_attributes][is_correct_answer]", option_form.index, option_form.object.is_correct_answer %>
-            </p>
+            <b><%= option_form.label :correct_option %></b>
+            </div>
+            
             <% end %>
-            <%= form.submit %>
+            <%= form.submit "Create question", class: "btn btn-secondary" %>
             </p>
             <% end %>  
           </div>

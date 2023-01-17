@@ -1,1 +1,36 @@
-<h1>Hi</h1>
+<div class = "tables">
+  <h1 class = 'text-center'><%= @user.name %></h1>
+  <% if @user_quizzes.present? %>
+  <p>
+  <table class="table table-bordered align-middles table-condensed">
+  <thead class="table-dark">
+  <tr>
+    <th class="text-center">Date</th>
+    <th class="text-center">Category</th>
+    <th class="text-center">Quiz</th>
+    <th class="text-center">Score</th>
+  </tr>
+  </thead>
+  <tbody class="text-center">
+    <% @user_quizzes.each do |user_quiz| %>
+    <% average = ((user_quiz.quiz.questions.count)* 10) / 2  %>
+    <% score = user_quiz.score %>
+      <tr>
+        <td><%= user_quiz.created_at.strftime("%d %b %Y %I:%M") %></td>
+        <td><%= user_quiz.quiz.sub_category.title %></td> 
+        <td><%= user_quiz.quiz.title %></td> 
+        <% if score > average %>
+          <td style="color: green"><b><%= score %></b></td>
+        <% else %> 
+          <td style="color: red"><b><%= score %></b></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+  </table>
+  </p>
+  <% else %>
+    <h3 class = 'text-center'><%= "User has not taken any quizzes" %></h3>
+  <% end %>
+  <p class = "text-center"><%= link_to "Back", home_index_path,:class=>"btn btn-primary"%></p>
+</div>

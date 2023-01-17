@@ -1,25 +1,4 @@
-<div class="text-center">
-  <div class="fs-1">Edit Question</div>
+<h1><div class="fs-3 pt-xl-5 pl-xl-2 fst-italic text-center">Edit question</div></h1>
+<div class="d-flex align-items-center justify-content-center vh-100">
+  <%= render 'form' %>
 </div>
-<section class="vh-100 gradient-custom">
-  <div class="container py-5 h-50">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-12 col-md-8 col-lg-2 col-xl-5">
-        <div class="card text-white" style="border-radius: 1rem;">
-          <div class="card-body p-5 text-center">
-            <%= form_with(model: [@quiz, @question]) do |form| %>
-              <%= form.hidden_field :quiz_id, value: @quiz.id%>
-              <div  class="form-outline mb-4">
-                <%= form.label :Question %><br>
-                <%= form.text_field :body %>
-              </div>
-              <div>
-                <%= form.submit %>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> 

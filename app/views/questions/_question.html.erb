@@ -1,14 +1,12 @@
 <% if current_user.is_admin? %>
   <% if question.body.present? %>
-    <p>    
-    <li>
-      <%= link_to question.body, quiz_question_path(@quiz, question) %>
-    </li>
-    <%= link_to "✎", edit_quiz_question_path(@quiz, question), class: "btn btn-xs btn-primary" %>
-      <%= link_to 'Destroy', [@question.quiz, question],
+  <tr>   
+    <td class="col-3"><%= link_to question.body, quiz_question_path(@quiz, question), class: "nav-link mb-3" %></td>
+    <td class="col-1"><%= link_to "✏", edit_quiz_question_path(@quiz, question),class: "btn btn-outline-light" %>
+    <%= link_to '❎', [@question.quiz, question],
               method: :delete,
-              data: { confirm: "Are you sure?" }, class: "btn btn-xs btn-danger" %>
-    </p>
+              data: { confirm: "Are you sure?" }, class: "btn btn-outline-light" %></td>
+  </tr>
   <% end %>    
 <% end %>     
 

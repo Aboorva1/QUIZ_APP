@@ -10,6 +10,7 @@ require 'faker'
 
 User.destroy_all
 Category.destroy_all
+SubCategory.destroy_all
 Quiz.destroy_all
 Question.destroy_all
 Option.destroy_all
@@ -21,9 +22,10 @@ User.create!(id:'1',
     password_confirmation: 'app@success',
     is_admin: true)
 
-1.times do
+5.times do
   User.create!(     
     name: Faker::Name.name,
+    
     email: Faker::Internet.email,
     password: "password", 
     password_confirmation: "password",
@@ -31,16 +33,23 @@ User.create!(id:'1',
   )
 end
 
-3.times do
+5.times do
   category = Category.create!( 
     title: Faker::Lorem.word
   )
 
-  2.times do
+  5.times do
+    sub_category = SubCategory.create!( 
+      title: Faker::Lorem.word,
+      category_id: category.id
+    )
+
+  5.times do
     quiz = Quiz.create!(
-      category_id: category.id,
-      category_name: category.title,
-      title: Faker::Lorem.sentence(word_count: 2)
+      sub_category_id: sub_category.id,
+      sub_category_name: sub_category.title,
+      title: Faker::Lorem.sentence(word_count: 2),
+      minutes: 1
     )
 
     5.times do
@@ -63,6 +72,7 @@ end
       )
     end
   end
+end
 end
 
 
